@@ -1,0 +1,14 @@
+C:\Users\jave\source\repos\Ques\bin\Debug\netcoreapp3.1\Ques.exe
+C:\Users\jave\source\repos\Ques\bin\Debug\netcoreapp3.1\Ques.deps.json
+C:\Users\jave\source\repos\Ques\bin\Debug\netcoreapp3.1\Ques.runtimeconfig.json
+C:\Users\jave\source\repos\Ques\bin\Debug\netcoreapp3.1\Ques.runtimeconfig.dev.json
+C:\Users\jave\source\repos\Ques\bin\Debug\netcoreapp3.1\Ques.dll
+C:\Users\jave\source\repos\Ques\bin\Debug\netcoreapp3.1\Ques.pdb
+C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.csproj.AssemblyReference.cache
+C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.AssemblyInfoInputs.cache
+C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.AssemblyInfo.cs
+C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.csproj.CoreCompileInputs.cache
+C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.dll
+C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.pdb
+C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.genruntimeconfig.cache

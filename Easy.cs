@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Ques
+{
+    class Easy
+    {
+        //键盘行
+        public String[] Q500()
+        {
+            string[] words1 = { "Hello", "Alaska", "Dad", "Peace" };
+            string[] words2 = { "omk" };
+            string[] words3 = { "adsdf", "sfd" };
+            string[] words4 = { "wqweqwr","asdfw","qwedsf","xcvxcv"};
+
+            string[] lines ={"qwertyuiop", "asdfghjkl", "zxcvbnm"};
+
+            for (int i = 0; i < 3; i++)
+            {
+
+            }
+
+            return null;
+        }
+
+        //键盘行内部函数
+        public String[] Q500F1(string[] lines,string[] words)
+        {
+            int lineNum=0;
+            string[] res = { };
+            for (int i = 0; i < words.Length; i++)
+            {
+                char[] wordsCharArray = words[i].ToCharArray();
+                //1.首先确定它首字母在哪一行
+                //由于这里的输入 题目没有说会不会有其他字母 所以这里不用考虑
+                for (int j = 0; j < lines.Length; j++)
+                {
+                    for (int k = 0; k < lines[j].Length; k++)
+                    {
+                        if (wordsCharArray[0]==(lines[j])[k])
+                        {
+                            lineNum = j;
+                        }
+                    }
+                }
+                //2.后面字母如果不在这一行 就直接放弃
+                for (int j = 0; j < wordsCharArray.Length; j++)
+                {
+                    bool flag = false;
+                    for (int k = 0; k < lines[lineNum].Length; k++)
+                    {
+                        //如果
+                        if (wordsCharArray[j]==lines[lineNum][k])
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if (flag==false)
+                    {
+                        break;
+                    }
+                }
+            }
+            return null;
+        }
+    }
+}
+
