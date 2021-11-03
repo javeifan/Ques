@@ -12,3 +12,17 @@ C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.csproj.CoreCompileI
 C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.dll
 C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.pdb
 C:\Users\jave\source\repos\Ques\obj\Debug\netcoreapp3.1\Ques.genruntimeconfig.cache
+C:\Users\gordon.fan\Ques\Ques1\Ques\bin\Debug\netcoreapp3.1\Ques.exe
+C:\Users\gordon.fan\Ques\Ques1\Ques\bin\Debug\netcoreapp3.1\Ques.deps.json
+C:\Users\gordon.fan\Ques\Ques1\Ques\bin\Debug\netcoreapp3.1\Ques.runtimeconfig.json
+C:\Users\gordon.fan\Ques\Ques1\Ques\bin\Debug\netcoreapp3.1\Ques.runtimeconfig.dev.json
+C:\Users\gordon.fan\Ques\Ques1\Ques\bin\Debug\netcoreapp3.1\Ques.dll
+C:\Users\gordon.fan\Ques\Ques1\Ques\bin\Debug\netcoreapp3.1\Ques.pdb
+C:\Users\gordon.fan\Ques\Ques1\Ques\obj\Debug\netcoreapp3.1\Ques.csproj.AssemblyReference.cache
+C:\Users\gordon.fan\Ques\Ques1\Ques\obj\Debug\netcoreapp3.1\Ques.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gordon.fan\Ques\Ques1\Ques\obj\Debug\netcoreapp3.1\Ques.AssemblyInfoInputs.cache
+C:\Users\gordon.fan\Ques\Ques1\Ques\obj\Debug\netcoreapp3.1\Ques.AssemblyInfo.cs
+C:\Users\gordon.fan\Ques\Ques1\Ques\obj\Debug\netcoreapp3.1\Ques.csproj.CoreCompileInputs.cache
+C:\Users\gordon.fan\Ques\Ques1\Ques\obj\Debug\netcoreapp3.1\Ques.dll
+C:\Users\gordon.fan\Ques\Ques1\Ques\obj\Debug\netcoreapp3.1\Ques.pdb
+C:\Users\gordon.fan\Ques\Ques1\Ques\obj\Debug\netcoreapp3.1\Ques.genruntimeconfig.cache

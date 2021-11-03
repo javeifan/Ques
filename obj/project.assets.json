@@ -8,23 +8,23 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\jave\\.nuget\\packages\\": {},
+    "C:\\Users\\gordon.fan\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jave\\source\\repos\\Ques\\Ques.csproj",
+      "projectUniqueName": "C:\\Users\\gordon.fan\\Ques\\Ques1\\Ques\\Ques.csproj",
       "projectName": "Ques",
-      "projectPath": "C:\\Users\\jave\\source\\repos\\Ques\\Ques.csproj",
-      "packagesPath": "C:\\Users\\jave\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jave\\source\\repos\\Ques\\obj\\",
+      "projectPath": "C:\\Users\\gordon.fan\\Ques\\Ques1\\Ques\\Ques.csproj",
+      "packagesPath": "C:\\Users\\gordon.fan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gordon.fan\\Ques\\Ques1\\Ques\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jave\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gordon.fan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -65,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

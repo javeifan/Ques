@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Collections;
 
 namespace Ques
 {
@@ -64,6 +65,48 @@ namespace Ques
                 }
             }
             return null;
+        }
+
+
+        //sum of two nums
+        //in this solution , time Cplxt = O(n^2)
+        public int[] Q1TwoSum1(int[] nums,int target)
+        {
+            int[] indices = new int[2];
+            for (int i = 0; i < nums.Length-1; i++)
+            {
+                for (int j = i+1; j < nums.Length; j++)
+                {
+                    if (nums[i]+nums[j]==target)
+                    {
+                        indices[0] = i;
+                        indices[1] = j;
+                    }
+                }
+            }
+            return indices;
+        }
+
+        //sum of two nums
+        //in this solution, time Cplxt=O(1)
+        public int[] Q1TwoSum2(int[] nums,int target)
+        {
+            Hashtable ht = new Hashtable();
+            int[] resArray = new int[2];
+            for (int i = 0; i < nums.Length; i++)
+            {
+                ht.Add(nums[i], i);
+            }
+            for (int i = 0; i < nums.Length; i++)
+            {
+                int res = target - nums[i];
+                if (ht.Contains(nums[i]))
+                {
+                    resArray[0] = i;
+                    resArray[1] = (int)ht[nums[i]];//这里要转型 因为拿出来的是object
+                }
+            }
+            return resArray;
         }
     }
 }
