@@ -1,4 +1,5 @@
 ﻿using System;
+using Ques.Collections;
 
 
 namespace Ques
@@ -7,8 +8,7 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            Easy easy = new Easy();
-            testQ1S1(easy);
+            testQ155();
         }
 
         static void  TraverseArray<T>(T[] array)
@@ -31,6 +31,23 @@ namespace Ques
             TraverseArray(easy.Q1TwoSum2(nums1,9));
             TraverseArray(easy.Q1TwoSum2(nums2,6));
             TraverseArray(easy.Q1TwoSum2(nums3,6));
+        }
+
+        static void testQ155()
+        {
+            MinStack minstack = new MinStack();
+            minstack.push(4);
+            minstack.push(3);
+            minstack.push(2);
+            minstack.push(1);
+            Console.WriteLine("the min is " + minstack.Min());
+            Console.WriteLine(minstack.Pop());
+            Console.WriteLine("the min is "+minstack.Min());
+            Console.WriteLine(minstack.Pop());
+            Console.WriteLine("the min is " + minstack.Min());
+            Console.WriteLine(minstack.Pop());
+            Console.WriteLine("the min is " + minstack.Min());
+            Console.WriteLine(minstack.Pop());
         }
     }
 }

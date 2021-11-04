@@ -87,6 +87,8 @@ namespace Ques
             return indices;
         }
 
+
+        //!!!there is a key duplicate issue in hashtable , please update this problem
         //sum of two nums
         //in this solution, time Cplxt=O(1)
         public int[] Q1TwoSum2(int[] nums,int target)
@@ -95,12 +97,13 @@ namespace Ques
             int[] resArray = new int[2];
             for (int i = 0; i < nums.Length; i++)
             {
+                //要注意 由于元素是可以重复的 而且我们在这里不能重复使用自身 所以这里要注意不能重复添加 如果重复添加的话
                 ht.Add(nums[i], i);
             }
             for (int i = 0; i < nums.Length; i++)
             {
                 int res = target - nums[i];
-                if (ht.Contains(nums[i]))
+                if (ht.Contains(res))
                 {
                     resArray[0] = i;
                     resArray[1] = (int)ht[nums[i]];//这里要转型 因为拿出来的是object
@@ -108,6 +111,10 @@ namespace Ques
             }
             return resArray;
         }
+
+        
+
+
     }
 }
 
