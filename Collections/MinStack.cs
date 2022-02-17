@@ -52,7 +52,6 @@ namespace Ques.Collections
             {
                 return MinList.GetFirst();
             }
-
             throw new Exception("the stack is empty");
         }
     }

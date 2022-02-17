@@ -1,11 +1,11 @@
 {
   "version": 3,
   "targets": {
-    ".NETCoreApp,Version=v3.1": {}
+    "net5.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETCoreApp,Version=v3.1": []
+    "net5.0": []
   },
   "packageFolders": {
     "C:\\Users\\gordon.fan\\.nuget\\packages\\": {},
@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gordon.fan\\Ques\\Ques1\\Ques\\Ques.csproj",
+      "projectUniqueName": "C:\\Question\\Ques.csproj",
       "projectName": "Ques",
-      "projectPath": "C:\\Users\\gordon.fan\\Ques\\Ques1\\Ques\\Ques.csproj",
+      "projectPath": "C:\\Question\\Ques.csproj",
       "packagesPath": "C:\\Users\\gordon.fan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gordon.fan\\Ques\\Ques1\\Ques\\obj\\",
+      "outputPath": "C:\\Question\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -29,15 +29,15 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp3.1"
+        "net5.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
+        "net5.0": {
+          "targetAlias": "net5.0",
           "projectReferences": {}
         }
       },
@@ -48,8 +48,8 @@
       }
     },
     "frameworks": {
-      "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
+      "net5.0": {
+        "targetAlias": "net5.0",
         "imports": [
           "net461",
           "net462",

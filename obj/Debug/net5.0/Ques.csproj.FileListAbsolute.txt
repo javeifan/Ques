@@ -1,0 +1,16 @@
+C:\Question\obj\Debug\net5.0\Ques.csproj.AssemblyReference.cache
+C:\Question\obj\Debug\net5.0\Ques.GeneratedMSBuildEditorConfig.editorconfig
+C:\Question\obj\Debug\net5.0\Ques.AssemblyInfoInputs.cache
+C:\Question\obj\Debug\net5.0\Ques.AssemblyInfo.cs
+C:\Question\obj\Debug\net5.0\Ques.csproj.CoreCompileInputs.cache
+C:\Question\bin\Debug\net5.0\Ques.exe
+C:\Question\bin\Debug\net5.0\Ques.deps.json
+C:\Question\bin\Debug\net5.0\Ques.runtimeconfig.json
+C:\Question\bin\Debug\net5.0\Ques.runtimeconfig.dev.json
+C:\Question\bin\Debug\net5.0\Ques.dll
+C:\Question\bin\Debug\net5.0\ref\Ques.dll
+C:\Question\bin\Debug\net5.0\Ques.pdb
+C:\Question\obj\Debug\net5.0\Ques.dll
+C:\Question\obj\Debug\net5.0\ref\Ques.dll
+C:\Question\obj\Debug\net5.0\Ques.pdb
+C:\Question\obj\Debug\net5.0\Ques.genruntimeconfig.cache

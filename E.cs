@@ -5,8 +5,106 @@ using System.Collections;
 
 namespace Ques
 {
-    class Easy
+    class E
     {
+
+        //longest increasing sequence
+        // input : [10,9,2,5,3,7,101,18]
+        // output : [2,3,7,10]
+        public int[] lengthOfLIS(int[] nums)
+        {
+            int n = nums.Length;
+            int[] array = getRandomNums(n,1,100,true);
+            int[] dp = new int[n];
+
+            int cnt = 0;
+            int max = array[0];
+            for (int i = 0; i < n; i++)
+            {
+                cnt = 0;
+                max = array[i];
+                for (int j = 0; j < i; j++)
+                {
+                    if (max < array[i])
+                    {
+                        max = array[i];
+                        dp[i] = dp[j] + 1;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        //lowerBound is open interval and upperBound is close interval
+        public int[] getRandomNums(int length,int lowerBound,int upperBound,bool isDistinct)
+        {
+            Random random = new Random();
+            List<int> list = new List<int>();
+            int[] array = new int[length];
+            if (isDistinct)
+            {
+                List<int> originNumsList = new List<int>();
+                for (int i = 0; i < upperBound-lowerBound+1; i++)
+                {
+                    originNumsList.Add(lowerBound+i);
+                }
+                for (int i = 0; i < length; i++)
+                {
+                    int index = random.Next(0,originNumsList.Count);
+                    list.Add(originNumsList[index]);
+                    originNumsList.RemoveAt(index);
+                }
+               
+            }
+
+            
+            for (int i = 0; i < length; i++)
+            {
+                array[i] = list[i];
+            }
+
+
+            return array;
+            
+        }
+
+        public void showArray(int[] array) {
+
+            Console.Write("[");
+            for (int i = 0; i < array.Length-1; i++)
+            {
+                
+                Console.Write(array[i]+",");
+            }
+            Console.Write(array[array.Length-1]+"]");
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //键盘行
         public String[] Q500()
         {

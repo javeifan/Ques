@@ -8,7 +8,7 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            testQ155();
+            
         }
 
         static void  TraverseArray<T>(T[] array)
@@ -19,7 +19,7 @@ namespace Ques
             }
         }
 
-        static void testQ1S1(Easy easy)
+        static void testQ1S1(E easy)
         {
             int[] nums1 = { 2, 7, 11, 15 };
             int[] nums2 = { 3,2,4 };
