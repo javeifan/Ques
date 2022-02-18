@@ -8,6 +8,7 @@ namespace Ques
     {
         static void Main(string[] args)
         {
+
             
         }
 

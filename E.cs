@@ -8,10 +8,10 @@ namespace Ques
     class E
     {
 
-        //longest increasing sequence
+        //longest increasing sequence by dynamic programming
         // input : [10,9,2,5,3,7,101,18]
         // output : [2,3,7,10]
-        public int[] lengthOfLIS(int[] nums)
+        public int[] lengthOfLISByDP(int[] nums)
         {
             int n = nums.Length;
             int[] array = getRandomNums(n,1,100,true);
@@ -35,6 +35,75 @@ namespace Ques
 
             return null;
         }
+
+        public int[] lengthOfLISByBruteForceSearch(int[] nums)
+        {
+            int n = nums.Length;
+            List<List<int[]>> list = new List<List<int[]>>();
+            for (int i = 0; i < n-1; i++)
+            {
+                List<int[]> lista = new List<int[]>();
+                list.Add(lista);
+                int[] startArray = new int[1];
+                startArray[0] = nums[i];
+                recursiveLISBFS(1,nums,startArray,lista);
+            }
+            return null;
+        }
+
+        //the list contains 
+        public void recursiveLISBFS(int length,int[] origNums,int[] increasingSubse,List<int[]> list)
+        {
+            int length1 = origNums.Length;
+            int length2 = increasingSubse.Length;
+            int index = getIndexByBFS(increasingSubse[length2], origNums);
+
+            if (index+1 == length1)
+            {
+                list.Add(increasingSubse);
+                return;
+            }
+
+            for (int i = index+1; i < length1; i++)
+            {
+                if (increasingSubse[length2] < origNums[i])
+                {
+                  
+                    
+                    
+                }
+            }
+
+
+
+            return null;
+        }
+
+        public int[] arrayAdd(int[] origArray, int newNum)
+        {
+            int[] expandedArray = new int[origArray.Length+1];
+            for (int i = 0; i < origArray.Length; i++)
+            {
+                expandedArray[i] = origArray[i];
+            }
+            expandedArray[origArray.Length] = newNum;
+            return expandedArray;
+        }
+
+        public int getIndexByBFS(int target, int[] nums)
+        {
+            int index = -1;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] == target)
+                {
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+
 
         //lowerBound is open interval and upperBound is close interval
         public int[] getRandomNums(int length,int lowerBound,int upperBound,bool isDistinct)
