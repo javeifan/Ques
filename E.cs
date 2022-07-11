@@ -14,7 +14,7 @@ namespace Ques
         public int[] lengthOfLISByDP(int[] nums)
         {
             int n = nums.Length;
-            int[] array = getRandomNums(n,1,100,true);
+            int[] array = getRandomNums(n, 1, 100, true);
             int[] dp = new int[n];
 
             int cnt = 0;
@@ -40,48 +40,45 @@ namespace Ques
         {
             int n = nums.Length;
             List<List<int[]>> list = new List<List<int[]>>();
-            for (int i = 0; i < n-1; i++)
+            for (int i = 0; i < n - 1; i++)
             {
                 List<int[]> lista = new List<int[]>();
                 list.Add(lista);
                 int[] startArray = new int[1];
                 startArray[0] = nums[i];
-                recursiveLISBFS(1,nums,startArray,lista);
+                recursiveLISBFS(1, nums, startArray, lista);
             }
             return null;
         }
 
         //the list contains 
-        public void recursiveLISBFS(int length,int[] origNums,int[] increasingSubse,List<int[]> list)
+        public void recursiveLISBFS(int length, int[] origNums, int[] increasingSubse, List<int[]> list)
         {
             int length1 = origNums.Length;
             int length2 = increasingSubse.Length;
             int index = getIndexByBFS(increasingSubse[length2], origNums);
 
-            if (index+1 == length1)
+            if (index + 1 == length1)
             {
                 list.Add(increasingSubse);
                 return;
             }
 
-            for (int i = index+1; i < length1; i++)
+            for (int i = index + 1; i < length1; i++)
             {
                 if (increasingSubse[length2] < origNums[i])
                 {
-                  
-                    
-                    
+
+
+
                 }
             }
-
-
-
-            return null;
+            return;
         }
 
         public int[] arrayAdd(int[] origArray, int newNum)
         {
-            int[] expandedArray = new int[origArray.Length+1];
+            int[] expandedArray = new int[origArray.Length + 1];
             for (int i = 0; i < origArray.Length; i++)
             {
                 expandedArray[i] = origArray[i];
@@ -106,7 +103,7 @@ namespace Ques
 
 
         //lowerBound is open interval and upperBound is close interval
-        public int[] getRandomNums(int length,int lowerBound,int upperBound,bool isDistinct)
+        public int[] getRandomNums(int length, int lowerBound, int upperBound, bool isDistinct)
         {
             Random random = new Random();
             List<int> list = new List<int>();
@@ -114,20 +111,20 @@ namespace Ques
             if (isDistinct)
             {
                 List<int> originNumsList = new List<int>();
-                for (int i = 0; i < upperBound-lowerBound+1; i++)
+                for (int i = 0; i < upperBound - lowerBound + 1; i++)
                 {
-                    originNumsList.Add(lowerBound+i);
+                    originNumsList.Add(lowerBound + i);
                 }
                 for (int i = 0; i < length; i++)
                 {
-                    int index = random.Next(0,originNumsList.Count);
+                    int index = random.Next(0, originNumsList.Count);
                     list.Add(originNumsList[index]);
                     originNumsList.RemoveAt(index);
                 }
-               
+
             }
 
-            
+
             for (int i = 0; i < length; i++)
             {
                 array[i] = list[i];
@@ -135,18 +132,19 @@ namespace Ques
 
 
             return array;
-            
+
         }
 
-        public void showArray(int[] array) {
+        public void showArray(int[] array)
+        {
 
             Console.Write("[");
-            for (int i = 0; i < array.Length-1; i++)
+            for (int i = 0; i < array.Length - 1; i++)
             {
-                
-                Console.Write(array[i]+",");
+
+                Console.Write(array[i] + ",");
             }
-            Console.Write(array[array.Length-1]+"]");
+            Console.Write(array[array.Length - 1] + "]");
 
 
         }
@@ -180,9 +178,9 @@ namespace Ques
             string[] words1 = { "Hello", "Alaska", "Dad", "Peace" };
             string[] words2 = { "omk" };
             string[] words3 = { "adsdf", "sfd" };
-            string[] words4 = { "wqweqwr","asdfw","qwedsf","xcvxcv"};
+            string[] words4 = { "wqweqwr", "asdfw", "qwedsf", "xcvxcv" };
 
-            string[] lines ={"qwertyuiop", "asdfghjkl", "zxcvbnm"};
+            string[] lines = { "qwertyuiop", "asdfghjkl", "zxcvbnm" };
 
             for (int i = 0; i < 3; i++)
             {
@@ -193,9 +191,9 @@ namespace Ques
         }
 
         //键盘行内部函数
-        public String[] Q500F1(string[] lines,string[] words)
+        public String[] Q500F1(string[] lines, string[] words)
         {
-            int lineNum=0;
+            int lineNum = 0;
             string[] res = { };
             for (int i = 0; i < words.Length; i++)
             {
@@ -206,7 +204,7 @@ namespace Ques
                 {
                     for (int k = 0; k < lines[j].Length; k++)
                     {
-                        if (wordsCharArray[0]==(lines[j])[k])
+                        if (wordsCharArray[0] == (lines[j])[k])
                         {
                             lineNum = j;
                         }
@@ -219,13 +217,13 @@ namespace Ques
                     for (int k = 0; k < lines[lineNum].Length; k++)
                     {
                         //如果
-                        if (wordsCharArray[j]==lines[lineNum][k])
+                        if (wordsCharArray[j] == lines[lineNum][k])
                         {
                             flag = true;
                             break;
                         }
                     }
-                    if (flag==false)
+                    if (flag == false)
                     {
                         break;
                     }
@@ -237,14 +235,14 @@ namespace Ques
 
         //sum of two nums
         //in this solution , time Cplxt = O(n^2)
-        public int[] Q1TwoSum1(int[] nums,int target)
+        public int[] Q1TwoSum1(int[] nums, int target)
         {
             int[] indices = new int[2];
-            for (int i = 0; i < nums.Length-1; i++)
+            for (int i = 0; i < nums.Length - 1; i++)
             {
-                for (int j = i+1; j < nums.Length; j++)
+                for (int j = i + 1; j < nums.Length; j++)
                 {
-                    if (nums[i]+nums[j]==target)
+                    if (nums[i] + nums[j] == target)
                     {
                         indices[0] = i;
                         indices[1] = j;
@@ -258,7 +256,7 @@ namespace Ques
         //!!!there is a key duplicate issue in hashtable , please update this problem
         //sum of two nums
         //in this solution, time Cplxt=O(1)
-        public int[] Q1TwoSum2(int[] nums,int target)
+        public int[] Q1TwoSum2(int[] nums, int target)
         {
             Hashtable ht = new Hashtable();
             int[] resArray = new int[2];
@@ -279,9 +277,124 @@ namespace Ques
             return resArray;
         }
 
-        
+        //300.最长递增子序列
+        //Problem1
+        public static int LengthOfLongestIncreasingSubstring1(int[] nums)//Brute force
+        {
+            int max = 1;
+            Dictionary<int, int> dic = new Dictionary<int, int>();//空间换时间
+            for (int i = 0; i < nums.Length; i++)
+            {
+                max = Math.Max(max, SubRoutine1OfProblem1(nums, i, dic));
+            }
+            return max;
+        }
 
+        //A recursive routine. Return the max Length of nums[Index]
+        //这个过程只是描述了以Index开头的最长递增子序列 以Index开头的最长递增子序列未必是全局最长递增子序列
+        //递归是有调用开销的 所以这个很慢 很正常
+        //
+        public static int SubRoutine1OfProblem1(int[] nums, int index, Dictionary<int, int> dic)//the index indicates which number it is processing.
+        {
+            int length = nums.Length;// I think you shouldn't concern about little differne of memory which would affect your results,achievement.
+            int maxLengthOfIndex = 0;
+            int maxLengthOfI = 0;
+            int maxLength = 0;
+            //1.Critical cases..
+            if (dic.ContainsKey(index))
+            {
+                return dic[index];
+            }
+            if (index == length - 1)
+            {
+                return 1;
+            }
+            //2.Main function
+            for (int i = index + 1; i < length; i++)//Just to descirbe what you want to do step by step exactly. Let's demosntrate the procedure here.
+            {
+                if (nums[i] > nums[index])//不一定从0号元素开始的才是最长递增子序列
+                {
+                    maxLengthOfI = SubRoutine1OfProblem1(nums, i, dic);//以该元素开头的子数组的最长长度，计算过程和原来一样
+                    maxLengthOfIndex = Math.Max(maxLengthOfI, maxLengthOfIndex);//取所有以比num[index]大的数字开头的子数组中最长的子序列 You need a local variable to record the max.
+                }
+            }
+            maxLength = 1 + maxLengthOfIndex;//最长长度加上本身即可
+            dic.Add(index, maxLength);
+            return maxLength;
+        }
 
+        //Problem1
+        public static int SubRoutine2OfProblem1(int[] nums, int index)
+        {
+            int length = nums.Length;
+            int maxLength = 1;
+            if (index == nums.Length - 1)
+            {
+                return 1;
+            }
+            for (int i = index + 1; i < length; i++)
+            {
+                if (nums[i] > nums[index])
+                {
+                    maxLength = Math.Max(maxLength, SubRoutine2OfProblem1(nums, index));
+                }
+            }
+            return maxLength;
+        }
+
+        //Problem1
+        //循环算法就快的多
+        public static int LengthOfLongestIncreasingSubstring2(int[] nums)//由于前面的结果是依赖后面的结果 所以我们可以倒着来 先计算后面的结果
+        {
+            Dictionary<int, int> dic = new Dictionary<int, int>();
+            int length = nums.Length;
+            dic.Add(nums.Length - 1, 1);//Error1 out of bounds
+            int max = 1;
+            int maxI;
+            for (int i = length - 2; i >= 0; i--)//Error2 你手写时 在这里声明赋值的时候 把
+            {
+                maxI = 1;//Error3 忘记重置maxI
+                for (int j = i + 1; j < length; j++) //一定要注意了 这里变量不要写错了
+                {
+                    if (nums[i] < nums[j])
+                    {
+                        maxI = Math.Max(maxI, dic[j] + 1);//Error4 j is not present in dic
+                    }
+                }
+                dic.Add(i, maxI);
+                max = Math.Max(max, maxI);
+            }
+            return max;
+        }
+        //300.最长递增子序列 最快的答案 有空再看 不着急
+        public int LengthOfLIS(int[] nums)
+        {
+            int n = nums.Length;
+            int[] d = new int[n + 1];
+            int len = 1;
+            d[1] = nums[0];
+            for (int i = 1; i < n; i++)
+            {
+                if (nums[i] > d[len])
+                    d[++len] = nums[i];
+                else
+                {
+                    int l = 1, r = len, pos = 0;
+                    while (l <= r)
+                    {
+                        int mid = (l + r) >> 1;
+                        if (d[mid] < nums[i])
+                        {
+                            pos = mid;
+                            l = mid + 1;
+                        }
+                        else
+                            r = mid - 1;
+                    }
+                    d[pos + 1] = nums[i];
+                }
+            }
+            return len;
+        }
     }
 }
-

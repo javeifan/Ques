@@ -1,5 +1,7 @@
 ﻿using System;
 using Ques.Collections;
+using Ques.OOP;//
+using Ques.Tools;
 
 
 namespace Ques
@@ -8,47 +10,28 @@ namespace Ques
     {
         static void Main(string[] args)
         {
+            DateTime start = DateTime.Now.ToLocalTime();
+            int[] nums = {3, 4, 1, 5, 2, 6, 7, 9, 10};//you need to write a function to create a random. let's put it on hold for a while
+            int[] nums1 = { 1, 5, 2, 4, 3 };
+            int[] nums2 = MathTool.ReadSquareBracketsArray("[0,1,0,3,2,3]");
 
-            
+            TraverseArray(nums2);
+            Console.WriteLine("max length is : " + E.LengthOfLongestIncreasingSubstring2(nums2));
+            DateTime end = DateTime.Now.ToLocalTime();
+
+
+            Console.WriteLine("运行时间："+end.AddMilliseconds(-1 * start.Millisecond).Millisecond + "ms");
         }
 
         static void  TraverseArray<T>(T[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine(array[i]);
+                Console.Write(array[i]+ " ");
             }
+            Console.WriteLine("");
         }
 
-        static void testQ1S1(E easy)
-        {
-            int[] nums1 = { 2, 7, 11, 15 };
-            int[] nums2 = { 3,2,4 };
-            int[] nums3 = { 3,3 };
-            TraverseArray(easy.Q1TwoSum1(nums1,9));
-            TraverseArray(easy.Q1TwoSum1(nums2,6));
-            TraverseArray(easy.Q1TwoSum1(nums3,6));
-            Console.WriteLine("----split line----");
-            TraverseArray(easy.Q1TwoSum2(nums1,9));
-            TraverseArray(easy.Q1TwoSum2(nums2,6));
-            TraverseArray(easy.Q1TwoSum2(nums3,6));
-        }
-
-        static void testQ155()
-        {
-            MinStack minstack = new MinStack();
-            minstack.push(4);
-            minstack.push(3);
-            minstack.push(2);
-            minstack.push(1);
-            Console.WriteLine("the min is " + minstack.Min());
-            Console.WriteLine(minstack.Pop());
-            Console.WriteLine("the min is "+minstack.Min());
-            Console.WriteLine(minstack.Pop());
-            Console.WriteLine("the min is " + minstack.Min());
-            Console.WriteLine(minstack.Pop());
-            Console.WriteLine("the min is " + minstack.Min());
-            Console.WriteLine(minstack.Pop());
-        }
+        
     }
 }
