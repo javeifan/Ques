@@ -87,6 +87,11 @@ namespace Ques.Tools
             return nums;
         }
 
+        public static int BinarySearch(int[] nums,int target)
+        {
+            return 0;
+        }
+
         //----------------辅助工具----------------
         public static void TA(int[] nums)//traverse array
         {
@@ -97,8 +102,56 @@ namespace Ques.Tools
             Console.WriteLine();
         }
 
+        public static bool CheckIfSorted(int[] nums)
+        {
+            for (int i = 0; i < nums.Length-1; i++)
+            {
+                if (nums[i+1] < nums[i])
+                {
+                    Console.WriteLine("defeat");
+                    return false;
+                }
+            }
+            TA(nums);
+            Console.WriteLine("success");
+            return true;
+        }
+        public static void SortedTest()
+        {
+            for (int i = 0; i < 50; i++)
+            {
+                int[] nums = MathTool.getRandomInt(-5,25,10);
+                //put your sort method here to test
+                if (!CheckIfSorted(TestSort(nums)))
+                {
+                    Console.WriteLine("Some Problem there");
+                }
+            }
+        }
 
-        //----------------错误答案----------------
-        
+        //I would write all my exam code here
+        //----------------默写地址----------------
+
+        public static int[] TestSort(int[] nums)//先默写个选择吧
+        {
+            int length = nums.Length;
+            if (nums == null || length < 2)//不要忘了边界条件
+            {
+                return nums;
+            }
+            for (int i = 0; i < length - 1; i++)
+            {
+                for (int j = 0; j < length - i - 1; j++)
+                {
+                    if (nums[j] > nums[j + 1])
+                    {
+                        nums[j] = nums[j] + nums[j + 1];
+                        nums[j + 1] = nums[j] - nums[j + 1];
+                        nums[j] = nums[j] - nums[j + 1];
+                    }
+                }
+            }
+            return nums;
+        }
     }
 }

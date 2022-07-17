@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace Ques
 {
-    class E
+    public class E
     {
 
         //longest increasing sequence by dynamic programming
@@ -342,16 +342,25 @@ namespace Ques
             return maxLength;
         }
 
+        public static void TA(int[] nums)//traverse array
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                Console.Write(nums[i] + " ");
+            }
+            Console.WriteLine();
+        }
+
         //Problem1
         //循环算法就快的多
         public static int LengthOfLongestIncreasingSubstring2(int[] nums)//由于前面的结果是依赖后面的结果 所以我们可以倒着来 先计算后面的结果
         {
-            Dictionary<int, int> dic = new Dictionary<int, int>();
             int length = nums.Length;
-            dic.Add(nums.Length - 1, 1);//Error1 out of bounds
+            int[] dic = new int[length];//我们尝试把字典换成数组 把字典换成数组 速度瞬间提升了N多 直接击败了77%的用户
+            dic[length - 1] = 1;//Error1 out of bounds
             int max = 1;
             int maxI;
-            for (int i = length - 2; i >= 0; i--)//Error2 你手写时 在这里声明赋值的时候 把
+            for (int i = length - 2; i >= 0; i--)//Error2 单等写成双等 还有 i--
             {
                 maxI = 1;//Error3 忘记重置maxI
                 for (int j = i + 1; j < length; j++) //一定要注意了 这里变量不要写错了
@@ -361,8 +370,8 @@ namespace Ques
                         maxI = Math.Max(maxI, dic[j] + 1);//Error4 j is not present in dic
                     }
                 }
-                dic.Add(i, maxI);
-                max = Math.Max(max, maxI);
+                dic[i] = maxI;
+                max = Math.Max(max, maxI);//⑤忘了对所有进行比较
             }
             return max;
         }
@@ -396,5 +405,225 @@ namespace Ques
             }
             return len;
         }
+
+        //统计素数个数 暴力
+        //count the number of prime numbers smaller than n
+        //note : 1 is not a prime number
+        public static int CountPrimeNumberBF(int n)
+        {
+            int count = 0;
+            for (int i = 2; i < n + 1; i++)
+            {
+                count += (IsPrime2(i) ? 1 : 0);
+            }
+            return count;
+        }
+
+        //埃氏筛选法
+        //埃筛法处理100000以内的素数 只用了4ms
+        public static int CountPrimeNumberErato(int n)
+        {
+            bool[] isPrime = new bool[n];//false 表示素数 数组也是一种字典
+            int count = 0;
+            for (int i = 2; i < n; i++)
+            {
+                if (!isPrime[i])//只要它是素数 全部用
+                {
+                    for (int j = 2 * i; j < n; j += i)//这里的2*i还可以进一步优化 因为有很多重复的赋值为true的项
+                    {
+                        isPrime[j] = true;
+                    }
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        //isPrime v1
+        //this is actually 
+        //这个速度差距是相当大的 在计算100000以内的素数的时候 就已经到710ms了 而IsPrime2只用了9ms
+        private static bool IsPrime1(int n)
+        {
+            for (int j = 2; j < n; j++)
+            {
+                if (n % j == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //we found that we can omit some unnecessary calculations
+        private static bool IsPrime2(int n)
+        {
+            //int rootn = Convert.ToInt32(Math.Sqrt(n)); //下面可以不用rootn 直接写成 i*i<n 运行速度估计差不多
+            for (int i = 2; i * i <= n; i++)
+            {
+                if (n % i == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        //删除排序数组中的重复项
+        //返回删除之后的新长度
+        //双指针典型题目
+        //双指针的用法很多 但是这个方法里的双指针不是典型意义上的双指针
+        public static int removeDupFromSorted(int[] nums)
+        {
+            //讲道理 上来应该先判断处理边界情况
+            List<int> list = new List<int>();
+            list.Add(nums[0]);
+            for (int i = 1; i < nums.Length; i++)
+            {
+                if (list[list.Count - 1] != nums[i])
+                {
+                    list.Add(nums[i]);
+                }
+            }
+            TA(list.ToArray());
+            return list.Count;
+        }
+
+        //26.力扣要求不能使用额外空间 所以我们就必须使用真正的双指针了
+        //击败77%的用户 这个算法在测试中波动很大 上到148(24%) 下到124(98%)
+        public static int removeDupFromSorted1(int[] nums)
+        {
+            int i;//
+            int j = 0;//如果把这里改成1 把后面if那里改成j-1的话 速度会明显下降因为每次判断都要算j-1
+            for (i = 1; i < nums.Length; i++)
+            {
+                if (nums[j] != nums[i])
+                {
+                    nums[++j] = nums[i];
+                }
+                //你这里不用再i++了 你前面的for循环有i++
+            }
+            TA(nums);
+            return j + 1;
+        }
+        //724.寻找数组的中心下标
+        public static int PivotIndexBF(int[] nums)
+        {
+            int i;
+            int sum = nums[0];
+            for (i = 1; i < nums.Length; i++)
+            {
+                sum += nums[i];
+            }
+            int sum1 = 0;
+            sum -= nums[0];//要么把这个数组补足一下 要么这里就多判断一下 判断次数为length+1次
+            if (sum == sum1)
+            {
+                return 0;
+            }
+            for (i = 0; i < nums.Length - 1; i++)
+            {
+                sum -= nums[i + 1];
+                sum1 += nums[i];
+                if (sum1 == sum)
+                {
+                    Console.WriteLine("Sum = " + sum);
+                    Console.WriteLine("Sum1 = " + sum1);
+                    if (sum1 == sum)
+                    {
+                        return i + 1;
+                    }
+                }
+            }
+            return -1;
+        }
+
+        //运行速度跟上面那个没差 只不过是计算过程简化了一下 
+        public static int PivotIndexBF1(int[] nums)//中间可以用公式优化一下
+        {
+            int sum = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                sum += nums[i];
+            }
+            int sum1 = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (sum1 * 2 + nums[i] == sum)
+                {
+                    return i;
+                }
+                sum1 += nums[i];
+            }
+            return -1;
+        }
+
+        //69.x的平方根 的整数部分
+        //首先要想到二分法 因为这个区间跟排序好的数组是一样的
+        //虽然说计算资源已经不缺了 但是尽量不要用递归 消耗还是大的
+        //这个算法在计算大数时居然超时了 因为算平方的时候溢出了 所以要用除法来表达这个关系
+        //但是用除法的话 要注意除数不能为0
+        public static int SqrtXBin(int x)//二分查找法
+        {
+            int low = 0;
+            int high = x;
+            int m = 0;
+            while (low <= high) //极限夹逼的二分好非极限夹逼的二分 都研究一下吧
+            {
+                m = (low + high) / 2;
+                if (x / m > m)
+                { //因为要取的是整数部分 所以是向下取整 
+                    low = m + 1;
+                }
+                else
+                {
+                    high = m - 1;
+                }
+        }
+
+            return m;//结果肯定是不会比high大 比0小的 所以放心返回 
+        }
+
+        //课程给出的题解 
+        public static int SqrtX1(int x)
+        {
+            int low = 0;
+            int high = x;
+            int res = 0;
+            while (low <= high)
+            {
+                int mid = low + (high - low)/ 2;
+                if (mid * mid <=x)
+                {
+                    res = mid;
+                    low = mid + 1;
+                }
+                else
+                {
+                    high = mid - 1;
+                }
+            }
+            return res;
+        }
+        
+        //网友给出的 二分查找 非极限夹逼 求方根 不知道为什么会生效 但就是会生效。。
+        public static int SqrtXBin1(int x)
+        {
+            int low = 0;
+            int high = x;//在high和low的区间内 永远能确保
+            while (high > low + 1)//其实夹逼到相邻的时候就已经有答案了 不需要再做多的运算了
+            {
+                int mid = (high + low) / 2;
+                if ( x/mid > mid ) // 等价于 mid*mid <= x
+                {
+                    low = mid;
+                }
+                else
+                {
+                    high = mid;
+                }
+            }
+            return low;
+        }
     }
+    
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ques.Tools
 {
-    class MathTool
+    public class MathTool
     {
         //local就是局部变量
         public static int[] getRandomInt(int lowerBound,int higherBound,int length)//Open interval开区间 It means, for example 
@@ -40,6 +40,7 @@ namespace Ques.Tools
             }
             return nums;
         }
+
         public static int[] ReadSquareBracketsArray(string array)
         {
             array = array.Replace("[", "");
