@@ -89,7 +89,27 @@ namespace Ques.Tools
 
         public static int BinarySearch(int[] nums,int target)
         {
-            return 0;
+            //这里要有边界判断
+            int h = nums.Length-1;
+            int l = 0;
+            int m;
+            while (h >= l)//这里不同于求方根的整数位 这里是要精确到最终结果的 所以 要对于排序好的数组 每一个都要检查一遍
+            {
+                m = (h+l) / 2;
+                if ( nums[m] == target)
+                {
+                    return m;
+                }
+                else if( nums[m] < target)
+                {
+                    l = m + 1;
+                }
+                else
+                {
+                    h = m - 1;
+                }
+            }
+            return -1;
         }
 
         //----------------辅助工具----------------

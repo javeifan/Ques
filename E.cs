@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections;
+using System.Threading;
+using Ques.Collections;
+
 
 namespace Ques
 {
@@ -578,7 +581,7 @@ namespace Ques
                 {
                     high = m - 1;
                 }
-        }
+            }
 
             return m;//结果肯定是不会比high大 比0小的 所以放心返回 
         }
@@ -591,8 +594,8 @@ namespace Ques
             int res = 0;
             while (low <= high)
             {
-                int mid = low + (high - low)/ 2;
-                if (mid * mid <=x)
+                int mid = low + (high - low) / 2;
+                if (mid * mid <= x)
                 {
                     res = mid;
                     low = mid + 1;
@@ -604,7 +607,7 @@ namespace Ques
             }
             return res;
         }
-        
+
         //网友给出的 二分查找 非极限夹逼 求方根 不知道为什么会生效 但就是会生效。。
         public static int SqrtXBin1(int x)
         {
@@ -613,7 +616,7 @@ namespace Ques
             while (high > low + 1)//其实夹逼到相邻的时候就已经有答案了 不需要再做多的运算了
             {
                 int mid = (high + low) / 2;
-                if ( x/mid > mid ) // 等价于 mid*mid <= x
+                if (x / mid > mid) // 等价于 mid*mid <= x
                 {
                     low = mid;
                 }
@@ -624,6 +627,27 @@ namespace Ques
             }
             return low;
         }
+
+        //这个牛顿迭代最快能达到97%的水平
+        public static int SqrtXNewton(int x)//牛顿迭代
+        {
+            //可以用递归做 但估计效果不好
+            if (x < 2)
+            {
+                return x;
+            }
+            int i = x / 2;//choose a close
+            double res = (i + x / i) / 2;
+            while (i != (int)res)
+            {
+                i = (int)res;
+                res = (res + x * 1.0 / res) / 2;//不要忘记你i和x都是int不转型的话 是算不出来
+                Console.WriteLine("i=" + i);
+                Console.WriteLine("res=" + res);
+                Thread.Sleep(1000);
+            }
+            return i;
+        }
     }
-    
+
 }

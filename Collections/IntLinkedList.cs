@@ -16,7 +16,6 @@ namespace Ques.Collections
                 Ele = ele;
                 Next = next;
             }
-
         }
 
         private Node First;
