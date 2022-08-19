@@ -1,4 +1,6 @@
 ﻿using System;
+using Ques.Collections;
+using Ques.Tools;
 
 
 namespace Ques
@@ -7,9 +9,10 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            double[] array = Simulation.SimulateYangdao(1.0, 0.06, 30);
-            Console.WriteLine("攻击次数为" + array[0]);
-            Console.WriteLine("总攻速为" + array[1]);
+            int[] array = MathTool.getRandomInt(-5,25,10);
+            ListNode node = ListNode.CreateList(array);
+            TraverseList(node);
+            TraverseList(E.ReverseList(node));
         }
 
         static void  TraverseArray<T>(T[] array)
@@ -21,6 +24,15 @@ namespace Ques
             Console.WriteLine("");
         }
 
+        static void TraverseList(ListNode listnode)
+        {
+            while (listnode != null)
+            {
+                Console.Write(listnode.Ele + " ");
+                listnode = listnode.Next;
+            }
+            Console.WriteLine("");
+        }
         
     }
 }

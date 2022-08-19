@@ -648,6 +648,42 @@ namespace Ques
             }
             return i;
         }
+
+        //迭代的我就不看了 没有特别的必要 那我直接就不看了
+        //一会速度45% 内存99% 一会速度99% 内存6.5%. 这个就随它去吧 反正不要在意太多这种东西就行
+        public static ListNode ReverseList(ListNode node)
+        {
+            ListNode prev = node;// 该被遍历到的元素的下一个元素(原本的next元素)
+            ListNode next = null;// 需要一个变量来保存这个被断掉的链子反方向的这个指针 因为找不到 找不回去了
+            //视频中再指定了一个curr = node 其实没有必要 
+            while (node != null)
+            {
+                prev = node.Next;//1.保存原来顺序的 Next 元素
+                node.Next = next;//2.让现指针指向元素指向在上一层循环中设定的next(也就是它原来顺序的上一个元素) 其实也就是在断链的同时换了链的方向
+                next = node;//3.让next指向当前元素
+                node = prev;//4.让当前元素前进 
+            }   
+            return next;
+        }
+
+        //三个数的最大乘积 并输出这个乘积 默认乘积不会越界
+        //考察: 线性扫描
+        //思路：可以对输入进行分类 然后根据分类 求每一类的最优解 那么全集的最优解也就是算法的并集了
+        //分类有以下几种：
+        //1.全正数：找最大的三个数就行了
+        //2.全负数：也是找最大的三个数就行了(这里的大不是绝对值大 是本身大)
+        //3.有正有负：a.要么找三个最大的正数 b.要么找两个最大的负数 一个最大的正数
+        public static int MaximumProduct(int[] nums)
+        {
+
+            //不要在意内存的消耗 反正基本上用不完
+            return 0;
+        }
+        //返回array是1.全正 2.全负 3.有正有负且正正数量大于等于3 4.有正有负 正数量小于3 
+        public static int CheckArrayNature(int[] nums)
+        {
+            return 1;
+        }
     }
 
 }
