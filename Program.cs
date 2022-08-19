@@ -1,5 +1,4 @@
 ﻿using System;
-using Ques.Collections;
 
 
 namespace Ques
@@ -8,47 +7,20 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-
-            
+            double[] array = Simulation.SimulateYangdao(1.0, 0.06, 30);
+            Console.WriteLine("攻击次数为" + array[0]);
+            Console.WriteLine("总攻速为" + array[1]);
         }
 
         static void  TraverseArray<T>(T[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine(array[i]);
+                Console.Write(array[i]+ " ");
             }
+            Console.WriteLine("");
         }
 
-        static void testQ1S1(E easy)
-        {
-            int[] nums1 = { 2, 7, 11, 15 };
-            int[] nums2 = { 3,2,4 };
-            int[] nums3 = { 3,3 };
-            TraverseArray(easy.Q1TwoSum1(nums1,9));
-            TraverseArray(easy.Q1TwoSum1(nums2,6));
-            TraverseArray(easy.Q1TwoSum1(nums3,6));
-            Console.WriteLine("----split line----");
-            TraverseArray(easy.Q1TwoSum2(nums1,9));
-            TraverseArray(easy.Q1TwoSum2(nums2,6));
-            TraverseArray(easy.Q1TwoSum2(nums3,6));
-        }
-
-        static void testQ155()
-        {
-            MinStack minstack = new MinStack();
-            minstack.push(4);
-            minstack.push(3);
-            minstack.push(2);
-            minstack.push(1);
-            Console.WriteLine("the min is " + minstack.Min());
-            Console.WriteLine(minstack.Pop());
-            Console.WriteLine("the min is "+minstack.Min());
-            Console.WriteLine(minstack.Pop());
-            Console.WriteLine("the min is " + minstack.Min());
-            Console.WriteLine(minstack.Pop());
-            Console.WriteLine("the min is " + minstack.Min());
-            Console.WriteLine(minstack.Pop());
-        }
+        
     }
 }
