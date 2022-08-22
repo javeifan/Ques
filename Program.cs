@@ -9,15 +9,9 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            int[] array = MathTool.getRandomInt(-5,25,10);
-            HashTable ht = new HashTable();
-            for (int i = 0; i < 100; i++)
-            {
-                Console.WriteLine(ht.Hash(i));
-                ht[i] = i;
-                Console.WriteLine(ht[i]);
-            }
-            
+            int[] array = { 1, 2, 2, 1 };
+            ListNode head = ListNode.CreateList(array);
+            E.IsPalindrome(head);
         }
 
         static void  TraverseArray<T>(T[] array)

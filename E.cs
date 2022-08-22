@@ -684,6 +684,53 @@ namespace Ques
         {
             return 1;
         }
+
+        #region 回文链表
+        //要求O(n)时间和O(1)空间
+        //直接在反转链表基础上加个判断就行了、
+        //这个极差还是挺大的 快能快到90% 慢也能慢到25%
+        public static bool IsPalindrome(ListNode head)
+        {
+            int length = getLinkedListLength(head);
+            int i = 0;
+            ListNode newHead = null;
+            ListNode nextNode = head;
+            while (i < length/2)
+            {
+                nextNode = head.Next;
+                head.Next = newHead;
+                newHead = head;
+                head = nextNode;
+                i++;
+            }
+            if (length % 2 != 0)//回文数序列不顶是偶数的
+            {
+                head = head.Next;
+            }
+
+            while (head!=null)
+            {
+                if (head.Ele != newHead.Ele)
+                {
+                    return false;
+                }
+                head = head.Next;
+                newHead = newHead.Next;
+            }
+            return true;
+        }
+
+        public static int getLinkedListLength(ListNode head)
+        {
+            int length = 0;
+            while (head!=null)
+            {
+                length++;
+                head = head.Next;
+            }
+            return length;
+        }
+        #endregion
     }
 
 }
