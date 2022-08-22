@@ -10,9 +10,14 @@ namespace Ques
         static void Main(string[] args)
         {
             int[] array = MathTool.getRandomInt(-5,25,10);
-            ListNode node = ListNode.CreateList(array);
-            TraverseList(node);
-            TraverseList(E.ReverseList(node));
+            HashTable ht = new HashTable();
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine(ht.Hash(i));
+                ht[i] = i;
+                Console.WriteLine(ht[i]);
+            }
+            
         }
 
         static void  TraverseArray<T>(T[] array)
