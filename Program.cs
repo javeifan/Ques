@@ -9,9 +9,7 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            int[] array = { 1, 2, 2, 1 };
-            ListNode head = ListNode.CreateList(array);
-            E.IsPalindrome(head);
+            
         }
 
         static void  TraverseArray<T>(T[] array)
