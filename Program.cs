@@ -1,6 +1,8 @@
 ﻿using System;
 using Ques.Collections;
+using System.Collections.Generic;
 using Ques.Tools;
+using System.Collections;
 
 
 namespace Ques
@@ -9,7 +11,10 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            
+            Dictionary<int, bool> dic = new Dictionary<int, bool>();
+            dic.Add(1,true);
+            Console.WriteLine(dic[1]);
+            Console.WriteLine(dic.ContainsKey(2));
         }
 
         static void  TraverseArray<T>(T[] array)

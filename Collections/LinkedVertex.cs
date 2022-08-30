@@ -8,10 +8,10 @@ namespace Ques.Collections
 {
     class LinkedVertex<T>//define adjacent vertices
     {
-        private int ID { get; set; }
+        public int ID { get;private set; }
         public T Data{ get; set; }
 
-        public Dictionary<int, LinkedVertex<T>> AdjaVertices;
+        public List<LinkedVertex<T>> AdjaVertices;
         //Vertices next to this in directed graph. Adjacent vertices in undirected graph.
         //CRUD all are fast.
 
@@ -23,17 +23,17 @@ namespace Ques.Collections
         {
             ID = iD;
             Data = data;
-            AdjaVertices = new Dictionary<int, LinkedVertex<T>>();
+            AdjaVertices = new List<LinkedVertex<T>>();
         }
 
         public void AddAdjaVertice(LinkedVertex<T> vertex)
         {
-            AdjaVertices.Add(vertex.ID,vertex);
+            AdjaVertices.Add(vertex);
         }
 
         public void RemoveAdjaVertice(LinkedVertex<T> vertex)
         {
-            AdjaVertices.Remove(vertex.ID);
+            AdjaVertices.Remove(vertex);
         }
     }
 }
