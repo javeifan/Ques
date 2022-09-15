@@ -731,6 +731,65 @@ namespace Ques
             return length;
         }
         #endregion
-    }
 
+        #region 无重复字符的最长子串
+        public int LengthOfLongestSubstring1(string s)//这是我自己的版本
+        {
+            //要点：滑动窗口 
+            char[] chars = s.ToCharArray();
+            int l = s.Length;
+            if (l == 0)
+            {
+                return 0;
+            }
+            int i = 0;
+            int j = 0;
+            int max = 0;
+            while (i < l && j < l - 1)
+            {//要保证不能越界
+                for (int k = i; k <= j; k++)
+                {
+                    if (chars[k] == chars[j + 1])
+                    {
+                        max = Math.Max(max, j - i + 1);
+                        i = k + 1;
+                        break;
+                    }
+                }
+                j++;
+            }
+            return Math.Max(max, j - i + 1);
+        }
+
+        public static int lengthOfLongestSubstring(string s)
+        {
+         //这是labuladong的版本 只是把线性扫描换成了dictionary查找 速度变快 内存开销增加
+         //但这样会让滑动速度变慢 综合一下看哪个快吧
+            Dictionary<char, int> window = new Dictionary<char, int>();
+
+            int left = 0, right = 0;
+            int res = 0; // 记录结果
+            while (right < s.Length)
+            {
+                char c = s[right];
+                right++;
+                //窗口中c的数量增加1
+                window[c]++;
+                //如果窗口中c的数量大于1
+                while (window[c] > 1)
+                {
+                    char d = s[left];
+                    left++;
+                    // 进行窗口内数据的一系列更新
+                    window[d]--;
+                }
+                // 在这里更新答案
+                res = Math.Max(res, right - left);
+            }
+            return res;
+        }
+
+        #endregion
+
+    }
 }

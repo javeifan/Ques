@@ -112,6 +112,50 @@ namespace Ques.Tools
             return -1;
         }
 
+        /*快速排序 平均运行时间O(nlgn) 
+         虽然归并排序运行时间总是O(nlgn) 但快排还是比归并要快
+         因为O只是表示数量级 数量级一样但具体时间还受常数影响 
+         */
+        /*本方法属于原地快排
+          这种分治法的计算方法就是计算它的调用栈层数 每一层调用栈的所表示的所有子问题的规模总和=问题输入规模
+         */
+        public static int[] QuickSort(int[] array)//生序排列
+        {
+            SubQuickSort(array,0,array.Length);
+            return array;
+        }
+
+        public static int SubQuickSort(int[] array,int left,int right)//返回pivot的位置
+        {
+            if (left >= right)//不仅仅是left等于right 因为会有left>right的情况
+            {
+                return left;
+            }
+            int curLeft = left + 1;
+            int curRight = right;
+            int pivot = left; //好的快排选枢轴是关键 我这里就懒得随机了
+            while (curLeft < curRight)//为什么不用不等号 因为会出现左边比右边大 然后死循环
+            {
+                //还是直接写一个循环方便 这个算法的本质就是两个循环 一个交换循环 一个线性查找循环 
+                while (array[curLeft] <= array[pivot])
+                {
+                    curLeft++;
+                }
+                while (array[curRight] >= array[pivot])
+                {
+                    curRight--;
+                }
+                array[curRight] = array[curLeft] + array[curRight];
+                array[curLeft] = array[curRight] - array[curLeft];
+                array[curRight] = array[curRight] - array[curLeft];
+            }
+            array[curLeft] = array[curLeft] + array[pivot];
+            array[pivot] = array[curLeft] - array[pivot];
+            array[curLeft] = array[curLeft] - array[pivot];
+            SubQuickSort(array, left, pivot - 1);
+            SubQuickSort(array, pivot + 1,right);
+            return pivot;
+        }
         //----------------辅助工具----------------
         public static void TA(int[] nums)//traverse array
         {
@@ -154,23 +198,7 @@ namespace Ques.Tools
 
         public static int[] TestSort(int[] nums)//先默写个选择吧
         {
-            int length = nums.Length;
-            if (nums == null || length < 2)//不要忘了边界条件
-            {
-                return nums;
-            }
-            for (int i = 0; i < length - 1; i++)
-            {
-                for (int j = 0; j < length - i - 1; j++)
-                {
-                    if (nums[j] > nums[j + 1])
-                    {
-                        nums[j] = nums[j] + nums[j + 1];
-                        nums[j + 1] = nums[j] - nums[j + 1];
-                        nums[j] = nums[j] - nums[j + 1];
-                    }
-                }
-            }
+            QuickSort(nums);
             return nums;
         }
     }

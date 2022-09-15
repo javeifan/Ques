@@ -11,10 +11,31 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            Dictionary<int, bool> dic = new Dictionary<int, bool>();
-            dic.Add(1,true);
-            Console.WriteLine(dic[1]);
-            Console.WriteLine(dic.ContainsKey(2));
+            Dictionary<char, int> d = new Dictionary<char, int>();
+            
+        }
+
+        public static int LengthOfLongestSubstring(string s)
+        {
+            char[] chars = s.ToCharArray();
+            int l = s.Length;
+            int i = 0;
+            int j = 0;
+            int max = 0;
+            while (i < l && j < l - 1)
+            {//要保证不能越界
+                for (int k = i; k <= j; k++)
+                {
+                    if (chars[k] == chars[j + 1])
+                    {
+                        max = Math.Max(max, j - i + 1);
+                        i = k + 1;
+                        break;
+                    }
+                }
+                j++;
+            }
+            return Math.Max(max, j - i + 1);
         }
 
         static void  TraverseArray<T>(T[] array)
