@@ -11,8 +11,7 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            Dictionary<char, int> d = new Dictionary<char, int>();
-            
+            SearchAndSort.SortedTest();
         }
 
         public static int LengthOfLongestSubstring(string s)

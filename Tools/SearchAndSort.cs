@@ -121,45 +121,60 @@ namespace Ques.Tools
          */
         public static int[] QuickSort(int[] array)//生序排列
         {
-            SubQuickSort(array,0,array.Length);
+            SubQuickSort(array,0,array.Length-1);
             return array;
         }
 
-        public static int SubQuickSort(int[] array,int left,int right)//返回pivot的位置
+        //当你代码语句和别人写的一模一样 但是结果却不一样的时候 你还可以考虑的是 语句顺序 有些语句看起来顺序无所谓 其实是有所谓的
+        public static void SubQuickSort(int[] array,int left,int right)//返回pivot的位置 这是一个相当复杂的版本
         {
-            if (left >= right)//不仅仅是left等于right 因为会有left>right的情况
+            if (left > right)//不仅仅是left等于right 因为会有left>right的情况
             {
-                return left;
+                return;
             }
-            int curLeft = left + 1;
+            int curLeft = left;
             int curRight = right;
             int pivot = left; //好的快排选枢轴是关键 我这里就懒得随机了
-            while (curLeft < curRight)//为什么不用不等号 因为会出现左边比右边大 然后死循环
+            while (curLeft < curRight)//
             {
-                //还是直接写一个循环方便 这个算法的本质就是两个循环 一个交换循环 一个线性查找循环 
-                while (array[curLeft] <= array[pivot])
+                //选的是以左边为基准数 必须要从右边开始 因为在最后的夹逼时 必须要把左边逼到左边当前位置 正好小于pivot才行 因为你最后pivot是跟curLeft交换 Left先往右走是有可能越界的
+                while (curLeft < curRight && array[curRight] >= array[pivot]) curRight--;
+                while (curLeft < curRight && array[curLeft] <= array[pivot]) curLeft++;
+                if(curLeft < curRight)
                 {
-                    curLeft++;
+                    #region exchange curLeft and curRight
+                    int temp = array[curLeft];
+                    array[curLeft] = array[curRight];
+                    array[curRight] = temp;
+                    #endregion
                 }
-                while (array[curRight] >= array[pivot])
-                {
-                    curRight--;
-                }
-                array[curRight] = array[curLeft] + array[curRight];
-                array[curLeft] = array[curRight] - array[curLeft];
-                array[curRight] = array[curRight] - array[curLeft];
             }
-            array[curLeft] = array[curLeft] + array[pivot];
-            array[pivot] = array[curLeft] - array[pivot];
-            array[curLeft] = array[curLeft] - array[pivot];
-            SubQuickSort(array, left, pivot - 1);
-            SubQuickSort(array, pivot + 1,right);
-            return pivot;
+            #region exchange curLeft and pivot
+            int temp1 = array[curLeft];
+            array[curLeft] = array[pivot];
+            array[pivot] = temp1;
+            #endregion
+            SubQuickSort(array, left, curLeft - 1);
+            SubQuickSort(array, curLeft + 1,right);
         }
         //----------------辅助工具----------------
         public static void TA(int[] nums)//traverse array
         {
             for (int i = 0; i < nums.Length; i++)
+            {
+                Console.Write(nums[i] + " ");
+            }
+            Console.WriteLine();
+        }
+
+        public static void TA_mark(int[] nums,int index)//traverse array and show the marked number
+        {
+            for (int i = 0; i < index; i++)
+            {
+                Console.Write(nums[i] + " ");
+            }
+            Console.Write("|"+nums[index] + "| ");
+            for (int i = index + 1; i < nums.Length; i++)
             {
                 Console.Write(nums[i] + " ");
             }
