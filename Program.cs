@@ -11,7 +11,13 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            SearchAndSort.SortedTest();
+            bool[] array = new bool[10];
+            string s = "123456";
+            for (int k = 0; k < s.Length; k++)
+            {
+                string s1 = s.Substring(k, s.Length - k);
+                Console.WriteLine(s1);
+            }
         }
 
         public static int LengthOfLongestSubstring(string s)
