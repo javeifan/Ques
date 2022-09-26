@@ -140,7 +140,7 @@ namespace Ques
         //直接用动态规划吧
         public static bool DPIsMatch(string s, string p,int i,int j)//这个状态转移函数表示子串s[i..]能否与p[j..]相匹配
         {
-            while ( i < s.Length && j < P.Length)
+            while ( i < s.Length && j < p.Length)
             {
                 if (s[i] == p[j] || p[j] == '.')
                 {
@@ -154,13 +154,12 @@ namespace Ques
             //对于base case 总共有两种情况能匹配
             if ( i == s.Length)
             {
-                if ()
-                {
-
-                }
+                
             }
             return false;
         }
         #endregion
+
+        
     }
 }

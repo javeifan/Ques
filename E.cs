@@ -791,5 +791,51 @@ namespace Ques
 
         #endregion
 
+        #region 零钱兑换 返回所需的最小硬币数量
+        public static int CoinChange1(int[] coins,int amount)
+        {
+            if (amount == 0) return 0;//这里可以放两个basecase 也可以放三个basecase basecase可以用来改变状态 也可以用来判断边界条件
+            if (amount < 0 ) return -1;
+            int min = int.MaxValue;//比大小的小技巧
+            foreach (int coin in coins)//这是一个多叉树后序遍历 有些直接碰到base case 就直接跳过了
+            {
+                int temp = 1 + CoinChange1(coins, amount - coin) + 1;
+                min = Math.Min(min, temp);//如果这一轮处理的结果不是-1(+1后是0)的话 不要纳入比较
+                Console.WriteLine("coin :  " + coin + " amount : " + (amount) + " min : " + min);
+            }
+            return min == int.MaxValue ? -1 : min;//如果最后都没有纳入比较的话 直接返回min
+        }
+
+        public static int CoinChange2(int[] coins, int amount)//递归是相当慢的 自顶向下 又再次自底向上
+        {
+            int[] dpArray = new int[amount];
+            return CoinChange2DP(coins,amount, dpArray);
+        }
+
+        public static int CoinChange2DP(int[] coins, int amount , int[] dp)//递归开销相当的大 而且递归加循环 很容易超时 一定要剪枝
+        {
+            //1.base case
+            if (amount < 0) return -1;
+            if (amount == 0) return 0;
+            if (dp[amount-1] != 0) return dp[amount-1];//包括-1 只有还没有遍历过该节点的情况下 才会是0
+            int min = int.MaxValue;
+            //2.state change
+            foreach (int coin in coins)
+            {
+                int res = CoinChange2DP(coins, amount - coin , dp);
+                if (res == -1) continue;
+                min = Math.Min(min, res + 1 );
+            }
+            min = min == int.MaxValue ? -1 :  min;
+            return dp[amount - 1] = min;
+        }
+
+        public static int CoinChange3(int[] coins, int amount)//用迭代方式解决 自底向上解决 又快又简单了
+        {
+
+        }
+
+        #endregion
+
     }
 }

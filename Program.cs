@@ -11,13 +11,8 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            bool[] array = new bool[10];
-            string s = "123456";
-            for (int k = 0; k < s.Length; k++)
-            {
-                string s1 = s.Substring(k, s.Length - k);
-                Console.WriteLine(s1);
-            }
+            int[] array = {1,2,5};
+            Console.WriteLine(E.CoinChange2(array,11));
         }
 
         public static int LengthOfLongestSubstring(string s)
