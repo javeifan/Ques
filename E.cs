@@ -685,7 +685,7 @@ namespace Ques
             return 1;
         }
 
-        #region 回文链表
+        #region Palindrome linkedList
         //要求O(n)时间和O(1)空间
         //直接在反转链表基础上加个判断就行了、
         //这个极差还是挺大的 快能快到90% 慢也能慢到25%
@@ -732,7 +732,7 @@ namespace Ques
         }
         #endregion
 
-        #region 无重复字符的最长子串
+        #region LengthOfLongestSubstring
         public int LengthOfLongestSubstring1(string s)//这是我自己的版本
         {
             //要点：滑动窗口 
@@ -791,7 +791,7 @@ namespace Ques
 
         #endregion
 
-        #region 零钱兑换 返回所需的最小硬币数量
+        #region CoinChange
         public static int CoinChange1(int[] coins,int amount)
         {
             if (amount == 0) return 0;//这里可以放两个basecase 也可以放三个basecase basecase可以用来改变状态 也可以用来判断边界条件
@@ -830,10 +830,27 @@ namespace Ques
             return dp[amount - 1] = min;
         }
 
-        public static int CoinChange3(int[] coins, int amount)//用迭代方式解决 自底向上解决 又快又简单了
-        {
+        #endregion
 
+        #region 70.Climbing stairs
+        //I wanna use dynamic programming 
+        public static int _70_ClimingStairs(int n)
+        {
+            int l = n > 2 ? n : 2; //length
+            int[] result = new int[n];
+            //Critical cases this is what you need to do
+            result[0] = 1;
+            result[1] = 2;
+            if (l > 2)
+            {
+                for (int i = 2; i < l; i++)
+                {
+                    result[i] = result[i - 2] + result[i - 1];
+                }
+            }
+            return result[n-1];
         }
+
 
         #endregion
 

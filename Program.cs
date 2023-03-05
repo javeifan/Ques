@@ -11,8 +11,7 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            int[] array = {1,2,5};
-            Console.WriteLine(E.CoinChange2(array,11));
+            Console.WriteLine(E._70_ClimingStairs(3));
         }
 
         public static int LengthOfLongestSubstring(string s)
@@ -55,6 +54,11 @@ namespace Ques
                 listnode = listnode.Next;
             }
             Console.WriteLine("");
+        }
+
+        static void Permute(int[] nums)
+        {
+
         }
         
     }
