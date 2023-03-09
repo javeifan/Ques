@@ -1074,6 +1074,46 @@ namespace Ques
         #endregion
 
         #region 383 Ransom Note
+        public static bool _383(string ransomNote, string magazine)
+        {
+            int match = 0;
+            List<char> magaList = new List<char>(magazine.ToCharArray());
+
+            foreach (char n in ransomNote)
+            {
+                foreach (char m in magaList)
+                {
+                    if (n == m)
+                    {
+                        match++;
+                        magaList.Remove(m);
+                        break;
+                    }
+                }
+            }
+            if (match == ransomNote.Length) return true;
+            return false;
+        }
+
+        public static bool _383_1(string ransomNote, string magazine)
+        {
+            int match = 0;
+            foreach (char n in ransomNote)
+            {
+                foreach (char m in magazine)
+                {
+                    if (n == m)
+                    {
+                        int indexOfMaga = magazine.IndexOf(n);
+                        match++;
+                        magazine = magazine.Substring(0, indexOfMaga) + magazine.Substring(indexOfMaga + 1, magazine.Length - 1);
+                        break;
+                    }
+                }
+            }
+            if (match == ransomNote.Length) return true;
+            return false;
+        }
 
         #endregion
 

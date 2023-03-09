@@ -12,9 +12,9 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            int[] array = {1,2,3,4,5,6};
-            ListNode head = ListNode.CreateList(array);
-            E._876_1(head);
+            string a = "aa";
+            string b = "aab";
+            Console.WriteLine(E._383(a,b));
             
         }
 
