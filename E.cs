@@ -422,6 +422,16 @@ namespace Ques
             return count;
         }
 
+        public StringBuilder GetRepeatedString(string unit, int times)
+        {
+            StringBuilder res = new StringBuilder(unit, times + 1);
+            for (int i = 0; i < times - 1; i++)
+            {
+                res.Append(unit);
+            }
+            return res;
+        }
+
         //埃氏筛选法
         //埃筛法处理100000以内的素数 只用了4ms
         public static int CountPrimeNumberErato(int n)
@@ -658,8 +668,8 @@ namespace Ques
             //视频中再指定了一个curr = node 其实没有必要 
             while (node != null)
             {
-                prev = node.Next;//1.保存原来顺序的 Next 元素
-                node.Next = next;//2.让现指针指向元素指向在上一层循环中设定的next(也就是它原来顺序的上一个元素) 其实也就是在断链的同时换了链的方向
+                prev = node.next;//1.保存原来顺序的 next 元素
+                node.next = next;//2.让现指针指向元素指向在上一层循环中设定的next(也就是它原来顺序的上一个元素) 其实也就是在断链的同时换了链的方向
                 next = node;//3.让next指向当前元素
                 node = prev;//4.让当前元素前进 
             }   
@@ -697,25 +707,25 @@ namespace Ques
             ListNode nextNode = head;
             while (i < length/2)
             {
-                nextNode = head.Next;
-                head.Next = newHead;
+                nextNode = head.next;
+                head.next = newHead;
                 newHead = head;
                 head = nextNode;
                 i++;
             }
             if (length % 2 != 0)//回文数序列不顶是偶数的
             {
-                head = head.Next;
+                head = head.next;
             }
 
             while (head!=null)
             {
-                if (head.Ele != newHead.Ele)
+                if (head.val != newHead.val)
                 {
                     return false;
                 }
-                head = head.Next;
-                newHead = newHead.Next;
+                head = head.next;
+                newHead = newHead.next;
             }
             return true;
         }
@@ -726,7 +736,7 @@ namespace Ques
             while (head!=null)
             {
                 length++;
-                head = head.Next;
+                head = head.next;
             }
             return length;
         }
@@ -830,6 +840,7 @@ namespace Ques
             return dp[amount - 1] = min;
         }
 
+
         #endregion
 
         #region 70.Climbing stairs
@@ -850,7 +861,219 @@ namespace Ques
             }
             return result[n-1];
         }
+        public static int CoinChange3(int[] coins, int amount)//用迭代方式解决 自底向上解决 又快又简单了
+        {//自底向上 不是从小往大了加 而是先计算小问题的解 在计算大问题的解
+            //从小往大加 如果不用递归 我根本不知道怎么做啊
+            int[] dp = new int[amount+1];
+            int i = 1;
+            while (i < amount + 1)
+            {
+                dp[i] = amount + 1;
+                foreach (int coin in coins)//你这样一步一步往前走过去 是可以覆盖到全结果的 没覆盖到的结果 就是amount+1 很大 完全不影响判断
+                {
+                    if (i - coin < 0) continue;//直接无解
+                    dp[i] = Math.Min(dp[i], 1 + dp[i - coin]);
+                }
+                i++;
+            }
+            return dp[amount] == amount + 1 ? -1: dp[amount];
+        }
 
+        public static int CoinChange4(int[] coins,int amount)//自底向上 剪枝DP法 
+        {
+            int[] dp = new int[amount + 1];
+            return -1;
+        }
+
+        public static void CoinChange4DP(int[] coins, int curAmount , int targetAmount, int[] dp)
+        {
+            //1.base case
+            if (curAmount >= targetAmount) return;
+        }
+
+
+        #endregion
+
+        //回溯算法 是纯暴力穷举 一般复杂度都很高
+        #region Permute
+        public static IList<IList<int>> Permute(int[] nums)
+        {
+            IList<IList<int>> tracks = new List<IList<int>>();
+            BacktrackPermute(new List<int>(),nums,tracks);
+            return tracks;
+        }
+        public static void BacktrackPermute(List<int> current,int[] choices, IList<IList<int>> tracks)
+        {
+            //1.上来先是停止条件
+            if (current.Count == choices.Length)
+            {
+                tracks.Add(new List<int>(current));
+                return;
+            }
+            //2.开始进行回溯的核心
+            for (int i = 0; i < choices.Length; i++)
+            {
+                if (!current.Contains(choices[i]))
+                {
+                    current.Add(choices[i]);
+                    BacktrackPermute(current, choices, tracks);
+                    current.RemoveAt(choices[i]);//这样的回溯相当于一个后序遍历
+                }
+            }
+        }
+        #endregion
+
+        #region NQueen
+        public static IList<IList<string>> SolveNQueens(int n)
+        {
+            List<IList<string>> tracks = new List<IList<string>>();
+            BacktrackNQueens(n,0,new List<int>(),tracks);
+            return tracks;
+        }
+
+        public static void BacktrackNQueens(int n, int row,List<int> current,IList<IList<string>> tracks)
+        {
+            if (current.Count == n)
+            {
+                tracks.Add(CreateNewNQueensBoard(current,n));
+                return;
+            }
+            for (int col = 0; col < n; col++)
+            {
+                current.Add(col);
+                if (!isNQueensValid(current))
+                {
+                    
+                }
+            }
+        }
+
+        public static List<string> CreateNewNQueensBoard(List<int> current,int n)
+        {
+            List<string> board = new List<string>();
+            
+            for (int i = 0; i < current.Count; i++)
+            {
+                StringBuilder sb = new StringBuilder(n);
+                for (int j = 0; j < current[i]; j++)
+                {
+                    sb.Append(".");
+                }
+                sb.Append("Q");
+                for (int j = current[i] + 1; j < n; j++)
+                {
+                    sb.Append(".");
+                }
+                board.Add(sb.ToString());
+            }
+            return null;
+        }
+
+        public static bool isNQueensValid(List<int> currentBoard)//不判断整个板 只判断新增的单行就行
+        {
+            int count = currentBoard.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (currentBoard[i] == currentBoard[count])
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+        #endregion
+
+        #region 1672.Richest Customer Wealth
+        public static int _1672_1(int[][] accounts)
+        {
+            for (int i = 0; i < accounts.Length; i++)
+            {
+                for (int j = 1; j < accounts[0].Length; j++)
+                {
+                    accounts[i][j] += accounts[i][j - 1];
+                }
+                accounts[i][accounts[0].Length - 1] = Math.Max(accounts[i][accounts[0].Length - 1], accounts[i > 0 ? i - 1 : 0][accounts[0].Length - 1]);
+            }
+            return accounts[accounts.Length - 1][accounts[0].Length - 1];
+        }
+
+        public static int _1672_2(int[][] accounts)
+        {
+            int max = 0;
+            foreach (int[] account in accounts)
+            {
+                for (int i = 1; i < account.Length; i++)
+                {
+                    account[i] += account[i - 1];
+                }
+                max = Math.Max(max,account[account.Length - 1]);
+            }
+            return max;
+        }
+        #endregion
+
+        #region 1342
+        public static int _1342_bitwise(int num) // use bitwise operator to calculate this
+        {
+            //when we use operator like & | to perform on binary numbers or bit-level data
+            //e.g. bitwise & performs a bitwise AND operation between two operands and return a binary number
+            int steps = 0;
+            while (num > 0)
+            {
+                if ((num & 1) == 0)
+                {
+                    num = num >> 1;
+                }
+                else
+                {
+                    num--;
+                }
+                steps++;
+            }
+            return steps;
+        }
+        #endregion
+
+        #region 876 middle of the linked list
+        public static ListNode _876(ListNode head)
+        {
+            ListNode node1 = head;
+            ListNode node2 = head;
+            int n = 1;
+            while (node2.next != null)
+            {
+                if ((n & 1) == 0) node1 = node1.next;
+                node2 = node2.next;
+                n++;
+            }
+            if ((n & 1) == 0) node1 = node1.next;
+            return node1;
+        }
+        public static ListNode _876_1(ListNode head)
+        {
+            List<ListNode> list = new List<ListNode>();
+            int n = 0;
+            while (head!=null)//there is one less execution here
+            {
+                list.Add(head);
+                head = head.next;
+                n++;
+            }
+            return list[ n / 2];
+        }
+        public static ListNode _876_2(ListNode head)
+        {
+            ListNode middle = head;
+            while (head != null && head.next != null)//there is one less execution here
+            {
+                middle = middle.next;
+                head = head.next.next;//anyway, it won't be out of bound. We don't cared  
+            }
+            return middle;
+        }
+        #endregion
+
+        #region 383 Ransom Note
 
         #endregion
 

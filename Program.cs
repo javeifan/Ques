@@ -3,6 +3,7 @@ using Ques.Collections;
 using System.Collections.Generic;
 using Ques.Tools;
 using System.Collections;
+using System.Text;
 
 
 namespace Ques
@@ -11,7 +12,20 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(E._70_ClimingStairs(3));
+            int[] array = {1,2,3,4,5,6};
+            ListNode head = ListNode.CreateList(array);
+            E._876_1(head);
+            
+        }
+
+        public static int Sum(int[] numbers)
+        {
+            int sum = 0;
+            foreach (int number in numbers)
+            {
+                sum += number;
+            }
+            return sum;
         }
 
         public static int LengthOfLongestSubstring(string s)
@@ -46,18 +60,28 @@ namespace Ques
             Console.WriteLine("");
         }
 
-        static void TraverseList(ListNode listnode)
+        static void TraverseList()
+        {
+
+        }
+
+        static void TraverseListNode(ListNode listnode)
         {
             while (listnode != null)
             {
-                Console.Write(listnode.Ele + " ");
-                listnode = listnode.Next;
+                Console.Write(listnode.val + " ");
+                listnode = listnode.next;
             }
             Console.WriteLine("");
         }
 
-        static void Permute(int[] nums)
+
+        static void TraverseTrack(IList<IList<int>> track)
         {
+            for (int i = 0; i < track.Count; i++)
+            {
+                TraverseList();
+            }
 
         }
         

@@ -8,17 +8,17 @@ namespace Ques.Collections
 {
     public class ListNode
     {
-        public int Ele { get; set; }
-        public ListNode Next { get; set; }
+        public int val { get; set; }
+        public ListNode next { get; set; }
 
         public ListNode(int ele)
         {
-            Ele = ele;
+            val = ele;
         }
 
         public ListNode(int ele, ListNode next) : this(ele)
         {
-            Next = next;
+            next = next;
         }
 
         public static ListNode CreateList(int[] array)
@@ -28,8 +28,8 @@ namespace Ques.Collections
             for (int i = 1; i < array.Length; i++)
             {
                 ListNode newNode = new ListNode(array[i]);
-                listNode.Next = newNode;
-                listNode = listNode.Next;
+                listNode.next = newNode;
+                listNode = listNode.next;
             }
             return headNode;
         }
