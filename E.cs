@@ -672,7 +672,7 @@ namespace Ques
                 node.next = next;//2.让现指针指向元素指向在上一层循环中设定的next(也就是它原来顺序的上一个元素) 其实也就是在断链的同时换了链的方向
                 next = node;//3.让next指向当前元素
                 node = prev;//4.让当前元素前进 
-            }   
+            }
             return next;
         }
 
@@ -705,7 +705,7 @@ namespace Ques
             int i = 0;
             ListNode newHead = null;
             ListNode nextNode = head;
-            while (i < length/2)
+            while (i < length / 2)
             {
                 nextNode = head.next;
                 head.next = newHead;
@@ -718,7 +718,7 @@ namespace Ques
                 head = head.next;
             }
 
-            while (head!=null)
+            while (head != null)
             {
                 if (head.val != newHead.val)
                 {
@@ -733,7 +733,7 @@ namespace Ques
         public static int getLinkedListLength(ListNode head)
         {
             int length = 0;
-            while (head!=null)
+            while (head != null)
             {
                 length++;
                 head = head.next;
@@ -773,8 +773,8 @@ namespace Ques
 
         public static int lengthOfLongestSubstring(string s)
         {
-         //这是labuladong的版本 只是把线性扫描换成了dictionary查找 速度变快 内存开销增加
-         //但这样会让滑动速度变慢 综合一下看哪个快吧
+            //这是labuladong的版本 只是把线性扫描换成了dictionary查找 速度变快 内存开销增加
+            //但这样会让滑动速度变慢 综合一下看哪个快吧
             Dictionary<char, int> window = new Dictionary<char, int>();
 
             int left = 0, right = 0;
@@ -802,10 +802,10 @@ namespace Ques
         #endregion
 
         #region CoinChange
-        public static int CoinChange1(int[] coins,int amount)
+        public static int CoinChange1(int[] coins, int amount)
         {
             if (amount == 0) return 0;//这里可以放两个basecase 也可以放三个basecase basecase可以用来改变状态 也可以用来判断边界条件
-            if (amount < 0 ) return -1;
+            if (amount < 0) return -1;
             int min = int.MaxValue;//比大小的小技巧
             foreach (int coin in coins)//这是一个多叉树后序遍历 有些直接碰到base case 就直接跳过了
             {
@@ -819,24 +819,24 @@ namespace Ques
         public static int CoinChange2(int[] coins, int amount)//递归是相当慢的 自顶向下 又再次自底向上
         {
             int[] dpArray = new int[amount];
-            return CoinChange2DP(coins,amount, dpArray);
+            return CoinChange2DP(coins, amount, dpArray);
         }
 
-        public static int CoinChange2DP(int[] coins, int amount , int[] dp)//递归开销相当的大 而且递归加循环 很容易超时 一定要剪枝
+        public static int CoinChange2DP(int[] coins, int amount, int[] dp)//递归开销相当的大 而且递归加循环 很容易超时 一定要剪枝
         {
             //1.base case
             if (amount < 0) return -1;
             if (amount == 0) return 0;
-            if (dp[amount-1] != 0) return dp[amount-1];//包括-1 只有还没有遍历过该节点的情况下 才会是0
+            if (dp[amount - 1] != 0) return dp[amount - 1];//包括-1 只有还没有遍历过该节点的情况下 才会是0
             int min = int.MaxValue;
             //2.state change
             foreach (int coin in coins)
             {
-                int res = CoinChange2DP(coins, amount - coin , dp);
+                int res = CoinChange2DP(coins, amount - coin, dp);
                 if (res == -1) continue;
-                min = Math.Min(min, res + 1 );
+                min = Math.Min(min, res + 1);
             }
-            min = min == int.MaxValue ? -1 :  min;
+            min = min == int.MaxValue ? -1 : min;
             return dp[amount - 1] = min;
         }
 
@@ -859,12 +859,12 @@ namespace Ques
                     result[i] = result[i - 2] + result[i - 1];
                 }
             }
-            return result[n-1];
+            return result[n - 1];
         }
         public static int CoinChange3(int[] coins, int amount)//用迭代方式解决 自底向上解决 又快又简单了
         {//自底向上 不是从小往大了加 而是先计算小问题的解 在计算大问题的解
             //从小往大加 如果不用递归 我根本不知道怎么做啊
-            int[] dp = new int[amount+1];
+            int[] dp = new int[amount + 1];
             int i = 1;
             while (i < amount + 1)
             {
@@ -876,16 +876,16 @@ namespace Ques
                 }
                 i++;
             }
-            return dp[amount] == amount + 1 ? -1: dp[amount];
+            return dp[amount] == amount + 1 ? -1 : dp[amount];
         }
 
-        public static int CoinChange4(int[] coins,int amount)//自底向上 剪枝DP法 
+        public static int CoinChange4(int[] coins, int amount)//自底向上 剪枝DP法 
         {
             int[] dp = new int[amount + 1];
             return -1;
         }
 
-        public static void CoinChange4DP(int[] coins, int curAmount , int targetAmount, int[] dp)
+        public static void CoinChange4DP(int[] coins, int curAmount, int targetAmount, int[] dp)
         {
             //1.base case
             if (curAmount >= targetAmount) return;
@@ -899,10 +899,10 @@ namespace Ques
         public static IList<IList<int>> Permute(int[] nums)
         {
             IList<IList<int>> tracks = new List<IList<int>>();
-            BacktrackPermute(new List<int>(),nums,tracks);
+            BacktrackPermute(new List<int>(), nums, tracks);
             return tracks;
         }
-        public static void BacktrackPermute(List<int> current,int[] choices, IList<IList<int>> tracks)
+        public static void BacktrackPermute(List<int> current, int[] choices, IList<IList<int>> tracks)
         {
             //1.上来先是停止条件
             if (current.Count == choices.Length)
@@ -927,15 +927,15 @@ namespace Ques
         public static IList<IList<string>> SolveNQueens(int n)
         {
             List<IList<string>> tracks = new List<IList<string>>();
-            BacktrackNQueens(n,0,new List<int>(),tracks);
+            BacktrackNQueens(n, 0, new List<int>(), tracks);
             return tracks;
         }
 
-        public static void BacktrackNQueens(int n, int row,List<int> current,IList<IList<string>> tracks)
+        public static void BacktrackNQueens(int n, int row, List<int> current, IList<IList<string>> tracks)
         {
             if (current.Count == n)
             {
-                tracks.Add(CreateNewNQueensBoard(current,n));
+                tracks.Add(CreateNewNQueensBoard(current, n));
                 return;
             }
             for (int col = 0; col < n; col++)
@@ -943,15 +943,15 @@ namespace Ques
                 current.Add(col);
                 if (!isNQueensValid(current))
                 {
-                    
+
                 }
             }
         }
 
-        public static List<string> CreateNewNQueensBoard(List<int> current,int n)
+        public static List<string> CreateNewNQueensBoard(List<int> current, int n)
         {
             List<string> board = new List<string>();
-            
+
             for (int i = 0; i < current.Count; i++)
             {
                 StringBuilder sb = new StringBuilder(n);
@@ -1006,7 +1006,7 @@ namespace Ques
                 {
                     account[i] += account[i - 1];
                 }
-                max = Math.Max(max,account[account.Length - 1]);
+                max = Math.Max(max, account[account.Length - 1]);
             }
             return max;
         }
@@ -1053,13 +1053,13 @@ namespace Ques
         {
             List<ListNode> list = new List<ListNode>();
             int n = 0;
-            while (head!=null)//there is one less execution here
+            while (head != null)//there is one less execution here
             {
                 list.Add(head);
                 head = head.next;
                 n++;
             }
-            return list[ n / 2];
+            return list[n / 2];
         }
         public static ListNode _876_2(ListNode head)
         {
@@ -1100,22 +1100,33 @@ namespace Ques
             int match = 0;
             foreach (char n in ransomNote)
             {
-                foreach (char m in magazine)
-                {
-                    if (n == m)
-                    {
-                        int indexOfMaga = magazine.IndexOf(n);
-                        match++;
-                        magazine = magazine.Substring(0, indexOfMaga) + magazine.Substring(indexOfMaga + 1, magazine.Length - 1);
-                        break;
-                    }
-                }
+                int matchingIndex = magazine.IndexOf(n);
+                if (matchingIndex == -1) return false;
+                //It is valid when the index onlye exceeds the maximum index by one
+                magazine = magazine.Substring(0, matchingIndex) + magazine.Substring(matchingIndex + 1);
+                match++;
             }
             if (match == ransomNote.Length) return true;
             return false;
         }
 
+        public static bool _383_2(string ransomNote, string magazine)
+        {
+            //when it comes to find remember hashmap is a great tool to use.
+            Dictionary<char, int> hashMap = new Dictionary<char, int>();
+            foreach (char c in magazine)
+            {
+                int value = hashMap.GetValueOrDefault(c, 0);
+                if (!hashMap.TryAdd(c, value + 1)) hashMap[c] = value + 1;
+            }
+            foreach (char c in ransomNote)
+            {
+                int value = hashMap.GetValueOrDefault(c, 0);
+                if (value == 0) return false;
+                hashMap[c]--;
+            }
+            return true;
+        }
         #endregion
-
     }
 }

@@ -12,10 +12,10 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            string a = "aa";
-            string b = "aab";
-            Console.WriteLine(E._383(a,b));
-            
+            string a = "aabb";
+            string b = "aabb";
+            Console.WriteLine(E._383_2(a, b));
+
         }
 
         public static int Sum(int[] numbers)
