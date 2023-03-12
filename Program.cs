@@ -12,10 +12,9 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            string a = "aa";
-            string b = "aab";
-            Console.WriteLine(E._383(a,b));
-            
+            int?[] array = { 8, 3, 10, 1, 6, null, 14, null, null, 4, 7, 13 };
+            TreeNode node = new TreeNode(array);
+            Console.WriteLine(node.CheckHeight());
         }
 
         public static int Sum(int[] numbers)
