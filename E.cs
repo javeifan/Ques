@@ -1128,5 +1128,70 @@ namespace Ques
             return true;
         }
         #endregion
+
+        #region 744 find smallest letter greater than target
+        public static char _744(char[] letters,char target)
+        {
+            char min_c = 'a';
+            int min_v = 27; // d-value difference
+            foreach (char c in letters)
+            {
+                int diff = c - target;
+                if ( diff>0 && diff < min_v) {
+                    min_c = c;
+                    min_v = diff;
+                }
+                if (diff == 1) return min_c;
+            }
+            if (min_v == 27) return letters[0];
+            return min_c;
+        }
+
+        //I have no idea how this can be faster than the binary search one.
+        //This includes 
+        public static char _744_1(char[] letters, char target)
+        {
+            HashSet<char> set = new HashSet<char>();
+            foreach (char c in letters)
+            {
+                set.Add(c);
+            }
+            set.Add(target);
+            char[] array = new char[set.Count];
+            set.CopyTo(array);
+            Array.Sort(array);
+            int index = Array.IndexOf(array, target);
+            if (index < array.Length - 1)
+            {
+                return array[index + 1];
+            }
+            return letters[0];
+        }
+
+        //This is based on binary search 
+        //Because this is a non-decreasing sequence.
+        //This saves much space but is slower.
+        public static char _744_2(char[] letters, char target)
+        {
+            int l = 0, r = letters.Length - 1, m = -1;
+            while ( l <= r)
+            {
+                m = (l + r) / 2;
+                if (letters[m] > target)
+                {
+                    r = m - 1;
+                }else// here we standardize (letters[m] < target) and (letters[m] = target) because they have to execute the same statement next 
+                {
+                    l = m + 1;
+                }
+                //finally l stops at the first position of the right of target
+            }
+            if (l >= letters.Length) l = 0; 
+            return letters[l];
+            //when different statements result to the same output, they can be standardize. 
+            //what a good way to standardize output statement!
+        }
+        #endregion
+
     }
 }

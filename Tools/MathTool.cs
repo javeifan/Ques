@@ -53,5 +53,11 @@ namespace Ques.Tools
             }
             return resultArray;
         }
+
+        public static int Sum_ProportionalSequence(int basement, int index)//index表示指数
+        {
+            //this calculate like 1 + 2^1 + 2^2 + 2^3 + 2^4...
+            return Convert.ToInt32( Math.Pow(basement,index+1)) - 1;
+        }
     }
 }
