@@ -58,7 +58,28 @@ namespace Ques
             int diff = 0;
             int[] sub(TreeNode node)
             {
-                List<int> vals = new List<int>();
+                List<int> vals = new List<int>();//this makes the list only performs on itself and its child-nodes. 
+                vals.Add(node.val);
+                if (node.left != null)
+                    vals.AddRange(sub(node.left));
+                if (node.left != null)
+                    vals.AddRange(sub(node.right));
+                int min = vals.Min();
+                int max = vals.Max();
+                diff = Math.Max(Math.Max(diff, Math.Abs(node.val - max)), Math.Abs(node.val - min));
+                return new int[] { min, max };
+            }
+            sub(root);
+            return diff;
+        }
+
+        //this is called top-down
+        public static int _1026_3(TreeNode root)
+        {
+            int diff = 0;
+            int[] sub(TreeNode node)
+            {
+                List<int> vals = new List<int>();//this makes the list only performs on itself and its child-nodes. 
                 vals.Add(node.val);
                 if (node.left != null)
                     vals.AddRange(sub(node.left));
