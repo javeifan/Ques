@@ -62,10 +62,10 @@ namespace Ques
                 vals.Add(node.val);
                 if (node.left != null)
                     vals.AddRange(sub(node.left));
-                if (node.left != null)
+                if (node.right != null)
                     vals.AddRange(sub(node.right));
-                int min = vals.Min();
-                int max = vals.Max();
+                    int min = vals.Min();
+                    int max = vals.Max();
                 diff = Math.Max(Math.Max(diff, Math.Abs(node.val - max)), Math.Abs(node.val - min));
                 return new int[] { min, max };
             }
@@ -74,24 +74,23 @@ namespace Ques
         }
 
         //this is called top-down
+        //pass min and max to child.
+        //自顶向下就是在底端计算数据
+        //自底向上就是在顶端计算数据
+        //note that comments lines affect running time.
         public static int _1026_3(TreeNode root)
         {
-            int diff = 0;
-            int[] sub(TreeNode node)
+            int sub(int max, int min, TreeNode node)
             {
-                List<int> vals = new List<int>();//this makes the list only performs on itself and its child-nodes. 
-                vals.Add(node.val);
-                if (node.left != null)
-                    vals.AddRange(sub(node.left));
-                if (node.left != null)
-                    vals.AddRange(sub(node.right));
-                int min = vals.Min();
-                int max = vals.Max();
-                diff = Math.Max(Math.Max(diff, Math.Abs(node.val - max)), Math.Abs(node.val - min));
-                return new int[] { min, max };
+                if (node == null) return max - min;
+                max = Math.Max(max, node.val);
+                min = Math.Min(min, node.val);
+
+                //you want to calculate when it's a leaf node,
+                //but judging whether it is a leaf node is more expensive than direct calculation.
+                return Math.Max(sub(max,min,node.right),sub(max,min,node.left)); 
             }
-            sub(root);
-            return diff;
+            return sub(root.val,root.val,root);
         }
         #endregion
     }
