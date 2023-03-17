@@ -93,5 +93,39 @@ namespace Ques
             return sub(root.val,root.val,root);
         }
         #endregion
+
+        #region 
+        public static bool _958(TreeNode root)
+        {
+            List<int[]> list = new List<int[]>();
+            void sub(int level, int order, TreeNode node)
+            {
+                //initialize array of level I
+                if (list.Count < level) list.Add(new int[Convert.ToInt32(Math.Pow(2, level - 1))]);
+
+                //fill in the position
+                int i = order - Convert.ToInt32(Math.Pow(2, level - 1));
+                list[level - 1][i] = 1;
+
+                //Traverse child-nodes
+                if (node.left != null) sub(level + 1, order * 2, node.left);
+                if (node.right != null) sub(level + 1, order * 2 + 1, node.right);
+            }
+            sub(1, 1, root);
+            //check this 
+            for (int i = 0; i < list.Count - 1; i++)
+            {
+                for (int j = 0; j < list[i].Length; j++)
+                {
+                    if (list[i][j] == 0) return false;
+                }
+            }
+            for (int j = 0; j < list[list.Count - 1].Length - 1; j++)
+            {
+                if (list[list.Count - 1][j] == 0 && list[list.Count - 1][j+1] == 1) return false;
+            }
+            return true;
+        }
+        #endregion
     }
 }

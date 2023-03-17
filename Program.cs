@@ -12,11 +12,11 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            int?[] array = { 8, 3, 10, 1, 6, null, 14, null, null, 4, 7, 13 };
-            int?[] array1 = { 1, null, 2, null, 0, 3 };
-            TreeNode node = new TreeNode(array1);
+            int?[] array = { 1, 2, 3, 4, 5, 6 };
+            int?[] array1 = { 1, 2, 3, 4, 5, null, 7 };
+            TreeNode node = new TreeNode(array);
             node.PrintTree(TreeNode.TreeStyle.casual);
-            Console.WriteLine(M._1026_3(node));
+            Console.WriteLine(M._958(node));
         }
 
         public static int Sum(int[] numbers)

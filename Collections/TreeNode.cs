@@ -22,6 +22,7 @@ namespace Ques.Collections
             this.left = left;
             this.right = right;
         }
+
         public TreeNode(int?[] array)//convert it into TreeNode
         {
             this.val = array[0].Value;
@@ -212,6 +213,27 @@ namespace Ques.Collections
                 }
             }
             return result;
+        }
+
+        void unfold() //unfold this tree into a list
+        {
+            List<int[]> list = new List<int[]>();
+            void sub(int level ,int order,TreeNode node)
+            {
+                //initialize array of level I
+                if (list[level - 1] == null) list[level - 1] = new int[Convert.ToInt32(Math.Pow(2, level - 1))];
+                
+                //fill in the position
+                int i = order - Convert.ToInt32(Math.Pow(2, level - 1));
+                list[level - 1][i - 1] = 1;
+
+                //Traverse child-nodes
+                if (node.left != null) sub(level+1, order*2, node.left);
+                if (node.right != null) sub(level + 1, order * 2 + 1, node.right);
+            }
+            sub(1,1,this);
+            //transfer to tree list.
+            
         }
     }
 }
