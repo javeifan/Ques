@@ -19,10 +19,11 @@ namespace Ques
             //node.PrintTree(TreeNode.TreeStyle.casual);
             //Console.WriteLine(M._958(node));
 
-
+            SmallGoodCustomer sgc = new SmallGoodCustomer();
             GoodCustomer gc = new GoodCustomer();
-            BadCustomer bc = (BadCustomer)gc;
-            Console.WriteLine(bc.name);
+            BadCustomer bc = new BadCustomer();
+            sgc = (SmallGoodCustomer)bc;
+            Console.WriteLine(sgc);
         }
 
         public static int Sum(int[] numbers)
