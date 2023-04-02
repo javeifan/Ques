@@ -14,9 +14,9 @@ namespace Ques
         {
             int?[] array = { 1, 2, 3, 4, 5, 6 };
             int?[] array1 = { 1, 2, 3, 4, 5, null, 7 };
-            TreeNode node = new TreeNode(array);
+            TreeNode node = new TreeNode(array1);
             node.PrintTree(TreeNode.TreeStyle.casual);
-            Console.WriteLine(M._958(node));
+            Console.WriteLine(M._958_1(node));
         }
 
         public static int Sum(int[] numbers)

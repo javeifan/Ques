@@ -94,37 +94,87 @@ namespace Ques
         }
         #endregion
 
-        #region 
+        #region 958 check completeness of a Binary tree
+        /*input type:
+         * 1.true : leaf nodes are as far left and no intermediate nodes are missing
+           2.false : leaf nodes are not as far left or intermediate nodes are missing  
+        */
         public static bool _958(TreeNode root)
         {
             List<int[]> list = new List<int[]>();
+            bool res = true;
             void sub(int level, int order, TreeNode node)
             {
                 //initialize array of level I
-                if (list.Count < level) list.Add(new int[Convert.ToInt32(Math.Pow(2, level - 1))]);
+                if (list.Count < level) list.Add(new int[Convert.ToInt32(Pow(2, level - 1))]);
+
+                //check if this is complete
+                if (res == false)return;
+
+                //check if the left one is missing i means the ith element in the level
+                //等比数列求和公式 sum geometric series : 2^0+2^1+2^2... =  an - a(n-1)
+                int i = Convert.ToInt32(Pow(2, level - 1) - Pow(2, level - 2));
+                if (order > Pow(2,level - 1) && list[level - 1][i - 1] == 0)
+                {
+                    res = false;
+                    return;
+                }
 
                 //fill in the position
-                int i = order - Convert.ToInt32(Math.Pow(2, level - 1));
-                list[level - 1][i] = 1;
+                list[level - 1][i - 1] = 1;
 
                 //Traverse child-nodes
                 if (node.left != null) sub(level + 1, order * 2, node.left);
                 if (node.right != null) sub(level + 1, order * 2 + 1, node.right);
             }
+            int Pow(int baseN, int index)
+            {
+                return Convert.ToInt32(Math.Pow(baseN,index));
+            }
             sub(1, 1, root);
-            //check this 
-            for (int i = 0; i < list.Count - 1; i++)
-            {
-                for (int j = 0; j < list[i].Length; j++)
-                {
-                    if (list[i][j] == 0) return false;
-                }
-            }
-            for (int j = 0; j < list[list.Count - 1].Length - 1; j++)
-            {
-                if (list[list.Count - 1][j] == 0 && list[list.Count - 1][j+1] == 1) return false;
-            }
             return true;
+        }
+
+        //I suddenly comprehend how to use BFS
+        public static bool _958_1(TreeNode root)
+        {
+            List<TreeNode> nodeList = new List<TreeNode>();
+            //find height
+            int FH(TreeNode node)//finding the height while traversing nodes
+            {
+                if (node == null) return 0;
+                return Math.Max(FH(node.left),FH(node.right)) + 1;
+            }
+            int height = FH(root);
+
+            bool isComplete = true;
+            //compelte the node list
+            void Sub(int level,int order,TreeNode node)
+            {
+                if (!isComplete) return;
+                //if it's interior node and order 
+                if (node == null)
+                {
+                    if (level < height )
+                    {
+                        isComplete = false;
+                        return;
+                    }
+                }
+                if (level == height) // there are cases level is greater than height
+                {
+                    if (order > 1 && node != null && nodeList.Last() == null)
+                    {
+                        isComplete = false;
+                    }
+                    nodeList.Add(node);
+                    return;
+                }
+                Sub(level+1,order * 2 - 1,node.left);
+                Sub(level + 1, order * 2, node.right);
+            }
+            Sub(1,1,root);
+            return isComplete;
         }
         #endregion
     }
