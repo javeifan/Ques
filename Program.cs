@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Ques.Tools;
 using System.Collections;
 using System.Text;
+using Ques.BeginningCS;
 
 
 namespace Ques
@@ -12,11 +13,24 @@ namespace Ques
     {
         static void Main(string[] args)
         {
+
             int?[] array = { 1, 2, 3, 4, 5, 6 };
             int?[] array1 = { 1, 2, 3, 4, 5, null, 7 };
             TreeNode node = new TreeNode(array1);
             node.PrintTree(TreeNode.TreeStyle.casual);
             Console.WriteLine(M._958_1(node));
+
+            //int?[] array = { 1, 2, 3, 4, 5, 6 };
+            //int?[] array1 = { 1, 2, 3, 4, 5, null, 7 };
+            //TreeNode node = new TreeNode(array);
+            //node.PrintTree(TreeNode.TreeStyle.casual);
+            //Console.WriteLine(M._958(node));
+
+            SmallGoodCustomer sgc = new SmallGoodCustomer();
+            GoodCustomer gc = new GoodCustomer();
+            BadCustomer bc = new BadCustomer();
+            sgc = (SmallGoodCustomer)bc;
+            Console.WriteLine(sgc);
         }
 
         public static int Sum(int[] numbers)
