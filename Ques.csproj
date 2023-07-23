@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BeginningCSharp\" />
+    <Compile Remove="BeginningCSharp\**" />
+    <EmbeddedResource Remove="BeginningCSharp\**" />
+    <None Remove="BeginningCSharp\**" />
   </ItemGroup>
 
 </Project>

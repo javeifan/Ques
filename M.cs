@@ -176,6 +176,26 @@ namespace Ques
             Sub(1,1,root);
             return isComplete;
         }
+
+        public static bool _958_2(TreeNode root)
+        {
+            //we use BFS here
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+            while (queue.Count !=  0)
+            {
+                TreeNode node = queue.Dequeue();
+                if (node.left!=null) { }
+            }
+            void sub(TreeNode node)
+            {
+                if (node == null) return;
+                if (node.left != null) queue.Enqueue(node.left);
+                if (node.right != null) queue.Enqueue(node.right);
+
+            }
+            return true;
+        }
         #endregion
     }
 }

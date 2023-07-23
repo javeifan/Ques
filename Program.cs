@@ -5,7 +5,7 @@ using Ques.Tools;
 using System.Collections;
 using System.Text;
 using Ques.BeginningCS;
-
+using Ques.Mathemaitcs;
 
 namespace Ques
 {
@@ -13,24 +13,7 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-
-            int?[] array = { 1, 2, 3, 4, 5, 6 };
-            int?[] array1 = { 1, 2, 3, 4, 5, null, 7 };
-            TreeNode node = new TreeNode(array1);
-            node.PrintTree(TreeNode.TreeStyle.casual);
-            Console.WriteLine(M._958_1(node));
-
-            //int?[] array = { 1, 2, 3, 4, 5, 6 };
-            //int?[] array1 = { 1, 2, 3, 4, 5, null, 7 };
-            //TreeNode node = new TreeNode(array);
-            //node.PrintTree(TreeNode.TreeStyle.casual);
-            //Console.WriteLine(M._958(node));
-
-            SmallGoodCustomer sgc = new SmallGoodCustomer();
-            GoodCustomer gc = new GoodCustomer();
-            BadCustomer bc = new BadCustomer();
-            sgc = (SmallGoodCustomer)bc;
-            Console.WriteLine(sgc);
+            Console.Write(ElementaryMath.CompoundInterestLimit(1.0,99999999));           
         }
 
         public static int Sum(int[] numbers)
@@ -56,14 +39,14 @@ namespace Ques
                 {
                     if (chars[k] == chars[j + 1])
                     {
-                        max = Math.Max(max, j - i + 1);
+                        max = System.Math.Max(max, j - i + 1);
                         i = k + 1;
                         break;
                     }
                 }
                 j++;
             }
-            return Math.Max(max, j - i + 1);
+            return System.Math.Max(max, j - i + 1);
         }
 
         static void  TraverseArray<T>(T[] array)

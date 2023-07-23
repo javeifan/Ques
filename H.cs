@@ -160,6 +160,18 @@ namespace Ques
         }
         #endregion
 
-        
+        public static int _135_Candy(int[] ratings)
+        {
+            int n = ratings.Length;
+            for (int i = 0; i < n;i++)
+            {
+
+            }
+            for (int i = n-1; i>=0; i--)
+            {
+
+            }
+            return 0;
+        }
     }
 }
