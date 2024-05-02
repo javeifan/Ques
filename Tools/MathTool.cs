@@ -8,7 +8,6 @@ namespace Ques.Tools
 {
     public class MathTool
     {
-        //local就是局部变量
         public static int[] getRandomInt(int lowerBound,int higherBound,int length)//Open interval开区间 It means, for example 
         {
             //1.Critical cases
@@ -58,6 +57,11 @@ namespace Ques.Tools
         {
             //this calculate like 1 + 2^1 + 2^2 + 2^3 + 2^4...
             return Convert.ToInt32( Math.Pow(basement,index+1)) - 1;
+        }
+
+        public static int GetNextPrimeNumber(int currentPrimeNumber)
+        {
+
         }
     }
 }

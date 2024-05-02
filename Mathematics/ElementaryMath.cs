@@ -10,6 +10,8 @@ namespace Ques.Mathemaitcs
     {
         double e = 0;
 
+        
+
         /*here we can't achieve tru infinite loops so
          * there should be a stop indicator
          * 1.difference between the results of two iterations
@@ -24,6 +26,11 @@ namespace Ques.Mathemaitcs
                 product = product * (1.0 + annualInterestRate / num_loop);
             }
             return product;
+        }
+
+        public static double CyclomoticMethod()
+        {
+
         }
     }
 }
