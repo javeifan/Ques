@@ -8,7 +8,7 @@ namespace Ques.Tools
 {
     public class MathTool
     {
-        public static int[] getRandomInt(int lowerBound,int higherBound,int length)//Open interval开区间 It means, for example 
+        public static int[] getRandomInt(int lowerBound,int higherBound,int length)//Open interval开区间
         {
             //1.Critical cases
             if (lowerBound > higherBound)
@@ -32,7 +32,7 @@ namespace Ques.Tools
             //2.2.Pick random one of the numberList to make sure the numbers are not repeated.
             for (int i = 0; i < length; i++)
             {
-                int index = random.Next() % (numberList.Count);// The result of Mod can't be the latter number. So we shouldn't subtract 1
+                int index = random.Next() % (numberList.Count);
                 int num = numberList[index];
                 numberList.RemoveAt(index);
                 nums[i] = num;
@@ -61,7 +61,7 @@ namespace Ques.Tools
 
         public static int GetNextPrimeNumber(int currentPrimeNumber)
         {
-
+            return 1;
         }
     }
 }

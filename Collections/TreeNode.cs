@@ -11,9 +11,35 @@ namespace Ques.Collections
         public TreeNode right;
         public List<List<int?>> treeList;
 
-        public TreeNode(int? val)
+        public TreeNode()
         {
-            this.val = val.Value;
+        }
+        public TreeNode(int val)
+        {
+            this.val = val;
+        }
+
+        public TreeNode(decimal testCase)
+        {
+            switch (testCase)
+            {
+                case 1:
+                    {
+                        this.val = -10;
+                        this.left = new TreeNode(9);
+                        this.right = new TreeNode(20);
+                        this.right.left = new TreeNode(15);
+                        this.right.right = new TreeNode(7);
+                        break;
+                    }
+            }
+            
+
+        }
+
+        public virtual bool contains(int val)//this should be override.
+        {
+            return false;
         }
 
         public TreeNode(int val, TreeNode left, TreeNode right)
@@ -23,82 +49,7 @@ namespace Ques.Collections
             this.right = right;
         }
 
-        public TreeNode(int?[] array)//convert it into TreeNode
-        {
-            this.val = array[0].Value;
-            List<List<int?>> _2dTreeList = new List<List<int?>>();
-            _2dTreeList.Add(new List<int?>());
-            int curLevel = 1;
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (_2dTreeList[curLevel - 1].Count >= Math.Pow(2, curLevel - 1))
-                {
-                    curLevel++;
-                    _2dTreeList.Add(new List<int?>());
-                }
-
-                if (curLevel == 4)
-                {
-                    int a = 0;
-                }
-
-                Dictionary<int, int> dic = CheckNullToFill(curLevel);
-                int index = _2dTreeList[curLevel - 1].Count;
-                while (dic.ContainsKey(index))
-                {
-                    int tempI = index;
-                    for (int j = 0; j < dic[tempI]; j++)
-                    {
-                        _2dTreeList[curLevel - 1].Add(null);
-                        index++;
-                    }
-                }
-                _2dTreeList[curLevel - 1].Add(array[i]);
-            }
-            this.treeList = _2dTreeList;
-
-            //Convert 2d treeNode into 
-            List<int?> templist = new List<int?>();
-            for (int i = 0; i < _2dTreeList.Count; i++)
-            {
-                templist.AddRange(_2dTreeList[i]);
-            }
-            array = templist.ToArray();
-
-            this.left = TreeNodeHelper(array, 1);
-            this.right = TreeNodeHelper(array, 2);
-
-            //It's good If you can use BFS to add elements in sequence
-            //which means the value index of this node and next node are only 1 difference
-            //But if you use DFS , it's also easy to find the numerical relationship between this node and its sub-nodes.
-            TreeNode TreeNodeHelper(int?[] arr, int index)
-            {
-                if (index >= arr.Length || arr[index] == null) return null;
-                TreeNode node = new TreeNode(arr[index]);
-                // indexSon1 = indexFather * 2 : this is the numerical relationship between the value index of an node and that of its sub-nodes
-                node.left = TreeNodeHelper(arr, 2 * index + 1);
-                node.right = TreeNodeHelper(arr, 2 * index + 2);
-                return node;
-            }
-
-
-            //this dic indicates in this level, we should populate m nulls from which index n
-            Dictionary<int, int> CheckNullToFill(int level)
-            {
-                Dictionary<int, int> dic = new Dictionary<int, int>();
-                int index = level - 2;
-                if (index < 0) return dic;
-                for (int j = 0; j < _2dTreeList[index].Count; j++)
-                {
-                    if (_2dTreeList[index][j] == null)
-                    {
-                        dic.Add(j * 2, 2);
-                    }
-                }
-
-                return dic;
-            }
-        }
+        
 
         public int CheckHeight(int?[] arr, int index) //check the height of the tree
         {
@@ -234,6 +185,30 @@ namespace Ques.Collections
             sub(1,1,this);
             //transfer to tree list.
             
+        }
+
+        public TreeNode restore(int[] array)//not complete
+        {
+            TreeNode[] treeNodes = new TreeNode[array.Length];
+            for (int i = array.Length - 1; i >= 0; i--)
+            {
+                TreeNode treeNode = new TreeNode(array[i]);
+                int leftInd = 2 * i + 1;
+                int rightInd = leftInd + 1;
+                if (leftInd <= array.Length) treeNode.left = treeNodes[1];
+            }
+            return treeNodes[0];
+        }
+
+        public int[] toList(TreeNode node)//turn a binary tree into 1D array
+        {
+           return new int[1];
+        }
+
+        public void preOrder_ToList(TreeNode node,List<int> list)
+        {
+            if (node == null) return;
+            list.Add(node.val);
         }
     }
 }

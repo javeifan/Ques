@@ -28,9 +28,6 @@ namespace Ques.Mathemaitcs
             return product;
         }
 
-        public static double CyclomoticMethod()
-        {
-
-        }
+        
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ques.Collections
 {
-    class Dictionary<TKey,TValue>
+    class Dic<TKey,TValue>
     {
         public struct Entry
         {
@@ -15,10 +15,11 @@ namespace Ques.Collections
             public int next;
         }
 
+        private int EntriesCount = 0;
         public int[] Bucket = new int[3];
         public Entry[] Entries = new Entry[3];
 
-        public Dictionary()
+        public Dic()
         {
            
         }

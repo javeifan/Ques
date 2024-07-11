@@ -6,6 +6,7 @@ using System.Collections;
 using System.Text;
 using Ques.BeginningCS;
 using Ques.Mathemaitcs;
+using Ques.Algorithms;
 
 namespace Ques
 {
@@ -13,7 +14,9 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            Console.Write(ElementaryMath.CompoundInterestLimit(1.0,99999999));           
+           int[] randoms = SearchAndSort.SelectionSort(MathTool.getRandomInt(1, 15, 10));
+            TraverseArray(randoms);
+            Console.Write(Search.binarySearch(randoms, 20));
         }
 
         public static int Sum(int[] numbers)

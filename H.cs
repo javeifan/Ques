@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ques.Collections;
 
 namespace Ques
 {
@@ -172,6 +173,29 @@ namespace Ques
 
             }
             return 0;
+        }
+
+        //leetcode 124
+        static int globalMax;
+        public static int maxPathSum(TreeNode root)
+        {
+            globalMax = int.MinValue;
+           maxPathSumIter(root);
+            return globalMax;
+        }
+        
+        public static int maxPathSumIter(TreeNode root)
+        {
+            if (root == null) return 0;
+
+            int maxLeft = Math.Max(0, maxPathSumIter(root.left));
+            int maxRight = Math.Max(0,maxPathSumIter(root.right));
+
+            int localMax = Math.Max(maxLeft, maxRight) + root.val;
+
+            globalMax = Math.Max(maxLeft+maxRight+root.val,Math.Max(globalMax, localMax));
+
+            return localMax;
         }
     }
 }
