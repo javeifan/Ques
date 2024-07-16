@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Ques.Collections
 {
-    interface Stack<Item>
+    class LinkedList<Item>
     {
-        public void push(Item item);
-        public Item pop();
-        public bool isEmpty();
-        public int size();
+        class Node
+        {
+            Item item { get; set; }
+            Item next { get; set; }
+        }
+
     }
 }

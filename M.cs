@@ -180,7 +180,7 @@ namespace Ques
         public static bool _958_2(TreeNode root)
         {
             //we use BFS here
-            Queue<TreeNode> queue = new Queue<TreeNode>();
+            System.Collections.Generic.Queue<TreeNode> queue = new System.Collections.Generic.Queue<TreeNode>();
             queue.Enqueue(root);
             while (queue.Count !=  0)
             {

@@ -7,6 +7,7 @@ using System.Text;
 using Ques.BeginningCS;
 using Ques.Mathemaitcs;
 using Ques.Algorithms;
+using Ques.Algorithms.Collections;
 
 namespace Ques
 {
@@ -14,9 +15,8 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-           int[] randoms = SearchAndSort.SelectionSort(MathTool.getRandomInt(1, 15, 10));
-            TraverseArray(randoms);
-            Console.Write(Search.binarySearch(randoms, 20));
+            Ques.Algorithms.Collections.LinkedStack<int> stack = new LinkedStack<int>();
+            
         }
 
         public static int Sum(int[] numbers)
@@ -52,11 +52,19 @@ namespace Ques
             return System.Math.Max(max, j - i + 1);
         }
 
-        static void  TraverseArray<T>(T[] array)
+        static void TraverseArray<T>(T[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
-                Console.Write(array[i]+ " ");
+                Console.Write(array[i] + " ");
+            }
+            Console.WriteLine("");
+        }
+        static void showArray<T>(T[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write(array[i] + " ");
             }
             Console.WriteLine("");
         }

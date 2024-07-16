@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Ques.Tools
+{
+    class StringTool
+    {
+        public static string[] readArithMeticExpression(string expression)
+        {
+            List<string> eles = new List<string>();
+            foreach (char c in expression)
+            {
+                string lastS = "";
+                if (eles.Any()) lastS = eles.Last();
+                if (c == ' ') continue;
+                else if (c == '+' || c == '-' || c == '*' || c == '/') eles.Add(c.ToString());
+                else if (c == '.' || (containsNum(c.ToString()) && containsNum(lastS))) eles[eles.Count - 1] = lastS + c;
+                else if (lastS == "s" || lastS == "sq" || lastS == "sqr") eles[eles.Count - 1] = lastS + c;
+                else eles.Add(c.ToString());
+            }
+            return eles.ToArray();
+        }
+        
+        public static bool containsNum(string s)
+        {
+            foreach (char c in s)
+            {
+                if (c >= '0' && c <= '9') return true;
+            }
+            return false;
+        }
+    }
+}
