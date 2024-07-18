@@ -9,22 +9,22 @@ namespace Ques.Algorithms.Collections
     interface Stack<Item>
     {
         //int N { get; set; }//default public in interface
-        void push(Item item);//default public in interface
-        Item pop();
-        bool isEmpty();
-        int size();
+        void Push(Item item);//default public in interface
+        Item Pop();
+        bool IsEmpty();
+        int Size();
     }
     class LinkedStack<Item> : Stack<Item>
     {
         private Node<Item> first {get; set;}
         private int N {get; set;}
 
-        public bool isEmpty()
+        public bool IsEmpty()
         {
             return first == null;//remember this concise, terse and brief
         }
 
-        public Item pop()
+        public Item Pop()//This is not safe
         {
             Node<Item> _first = first;
             first = first.next;
@@ -32,7 +32,7 @@ namespace Ques.Algorithms.Collections
             return _first.item;
         }
 
-        public void push(Item item)
+        public void Push(Item item)
         {
             Node<Item> newFirst = new Node<Item>();
             newFirst.item = item;
@@ -41,7 +41,7 @@ namespace Ques.Algorithms.Collections
             N++;
         }
 
-        public int size()
+        public int Size()
         {
             return N;
         }

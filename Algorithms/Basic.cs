@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ques.Tools;
+using System.Diagnostics;
 
 namespace Ques.Algorithms
 {
@@ -43,6 +44,58 @@ namespace Ques.Algorithms
             }
 
             return vals.Pop();
+        }
+
+        //1.4 Analysis Of Algorithms
+        public static void StopwatchTest()
+        {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            System.Threading.Thread.Sleep(1000);//1000 milisecond
+            stopwatch.Stop();
+            Console.WriteLine(stopwatch.Elapsed);
+        }
+
+        //测量一个数组中的三元组和为0的数量
+        public static int ThreeSum(int[] array)
+        {
+            int count = 0;
+            int length = array.Length;
+            for (int i = 0; i < length; i++)
+            {
+                for (int j = 0; j < length; j++)
+                {
+                    for (int k = 0; k < length; k++)
+                    {
+
+                    }
+                }
+            }
+            return count;
+        }
+
+        public static string ParenTest1 = "[()]{}{[()()]()}";
+        public static string ParenTest2 = "[(])";
+
+        public static bool ParenthesesCheck(string parentheses)
+        {
+            Stack<char> leftParentheses = new Stack<char>();
+
+            foreach (char c in parentheses.ToCharArray())
+            {
+                if (c == '[' || c == '{' || c == '(') 
+                { 
+                    leftParentheses.Push(c);
+                    continue;
+                }
+                if (!leftParentheses.Any()) return false;//Don't forget determine if the collection is empty, it's critical.
+                int c_left = leftParentheses.Pop();
+                if (c == ')' && c_left != '(') return false;
+                if (c == '}' && c_left != '{') return false;
+                if (c == ']' && c_left != '[') return false;
+            }
+
+            return !leftParentheses.Any();
         }
     }
 }

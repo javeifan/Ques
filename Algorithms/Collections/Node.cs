@@ -9,7 +9,15 @@ namespace Ques.Algorithms.Collections
     class Node<Item>
     {
         //This is for linked list.
-       public Item item { get; set; }
-       public Node<Item> next { get; set; }
+        public Item item { get; set; }
+        public Node<Item> next { get; set; }
+
+        public Node(Item item)
+        {
+            this.item = item;
+        }
+        public Node()
+        {
+        }
     }
 }

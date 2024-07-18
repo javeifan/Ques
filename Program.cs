@@ -15,8 +15,8 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            Ques.Algorithms.Collections.LinkedStack<int> stack = new LinkedStack<int>();
-            
+            Basic.ParenthesesCheck(Basic.ParenTest1);
+            Basic.ParenthesesCheck(Basic.ParenTest2);
         }
 
         public static int Sum(int[] numbers)
