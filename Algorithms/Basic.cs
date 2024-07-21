@@ -18,7 +18,7 @@ namespace Ques.Algorithms
         */
         public static double simpleArithMeticExpression(string expression)
         {
-            string[] eles = StringTool.readArithMeticExpression(expression);
+            string[] eles = StringTool.ReadArithmeticExpression(expression);
 
             Stack<double> vals = new Stack<double>();
             Stack<string> ops = new Stack<string>();
@@ -96,6 +96,75 @@ namespace Ques.Algorithms
             }
 
             return !leftParentheses.Any();
+        }
+
+        public static string InfixTest1 = "3 * (11 - 8) - 45 / ((98 - 60) / 10 + 6) ";
+        /// <summary>
+        /// Only apply to single-digit integers and + - * /
+        /// Variable a is the infix expression char list.
+        /// s is to contain operators.
+        /// </summary>
+        /// <param name="sufixExpression"></param>
+        /// <returns></returns>
+        public static string InfixToSufix(string sufixExpression)
+        {
+            Stack<char> s = new Stack<char>();
+            List<char> a = new List<char>();
+            foreach (char c in sufixExpression.ToCharArray())
+            {
+                if (c=='+' || c=='-' || c== '*'|| c=='/')
+                {
+                    while (true)
+                    {
+                        if (s.Peek() == '(' || OperatorPriority(c, s.Peek()))
+                        {
+                            s.Push(c);
+                            continue;
+                        }
+                        else
+                        {
+                            a.Add(s.Pop());
+                        }
+                    }
+                }
+                else if ( c == '(')
+                {
+                    s.Push(c);
+                }
+                else if ( c == ')')
+                {
+                    while (true)
+                    {
+                        char c_s = s.Pop();
+                        if (c == '+' || c == '-' || c == '*' || c == '/')
+                        {
+                            a.Add(c_s);
+                        }
+                        if (c == '(') continue;
+                    }
+                }
+                else //1. if it's number
+                {
+                    a.Add(c);
+                }
+            }
+            return new StringBuilder().Append(a.ToArray()).ToString();
+        }
+
+        /// <summary>
+        /// Compare whether operator o1 has higher priority than o2
+        /// </summary>
+        /// <param name="o1"></param>
+        /// <param name="o2"></param>
+        /// <returns></returns>
+
+        public static bool OperatorPriority(char o1, char o2)
+        {
+            int priorityO1 = 1;
+            int priorityO2 = 1;
+            if (o1 == '*' || o1 == '/') priorityO1 = 2;
+            if (o2 == '*' || o2 == '/') priorityO2 = 2;
+            return priorityO1 > priorityO2;
         }
     }
 }
