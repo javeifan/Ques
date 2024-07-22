@@ -95,7 +95,7 @@ namespace Ques.Algorithms
                 if (c == ']' && c_left != '[') return false;
             }
 
-            return !leftParentheses.Any();
+            return !leftParentheses.Any();//This is also a critical case.
         }
     }
 }
