@@ -10,7 +10,7 @@ namespace Ques.Tools
     {
         //Reads ArithmeticExpression including  + - * / sqr decimal and int
         //Returns the string[] contains each individual number or operator
-        public static string[] ReadArithmeticExpression(string expression)
+        public static string[] ReadInfixArithmeticExpression(string expression)
         {
             List<string> eles = new List<string>();
             foreach (char c in expression)

@@ -41,6 +41,11 @@ namespace Ques.Algorithms.Collections
             N++;
         }
 
+        public Item Peek()
+        {
+            return first.item;
+        }
+
         public int Size()
         {
             return N;

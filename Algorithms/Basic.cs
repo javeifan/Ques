@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ques.Tools;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Ques.Algorithms
 {
@@ -16,9 +17,9 @@ namespace Ques.Algorithms
         * In the arithmetic expression, sub expression which has higher priority must be enclosed in parentheses. 
         * test : string expression = "( ( 1 + sqrt( 5.0 ) ) / 2.0 )";
         */
-        public static double simpleArithMeticExpression(string expression)
+        public static double CalculateInfixArithMeticExpression(string expression)
         {
-            string[] eles = StringTool.ReadArithmeticExpression(expression);
+            string[] eles = StringTool.ReadInfixArithmeticExpression(expression);
 
             Stack<double> vals = new Stack<double>();
             Stack<string> ops = new Stack<string>();
@@ -43,6 +44,33 @@ namespace Ques.Algorithms
                 else { vals.Push(Convert.ToDouble(s)); }
             }
 
+            return vals.Pop();
+        }
+
+        public static double CalculateSufixArithMeticExpression(string expression)
+        {
+            string[] eles = expression.Split(' ');
+            Regex numberRegex = new Regex(@"^\d+$");// '\d' means number, '+' means one or more preceding character 
+            Stack<double> vals = new Stack<double>();
+
+            foreach (string str in eles)
+            {   
+                if (numberRegex.IsMatch(str))
+                {
+                    vals.Push(Convert.ToDouble(str));
+                }
+                else
+                {
+                    double n1 = vals.Pop();
+                    double n2 = vals.Pop();
+                    double res = 0;
+                    if (str == "+") res = n1 + n2;
+                    if (str == "-") res = n2 - n1;
+                    if (str == "*") res = n1 * n2;
+                    if (str == "/") res = n2 / n1;
+                    vals.Push(res);
+                }
+            }
             return vals.Pop();
         }
 
@@ -98,6 +126,9 @@ namespace Ques.Algorithms
             return !leftParentheses.Any();//This is also a critical case.
         }
 
+        /*1. Creates a stack for operators and a list for numbers, then scans the expression by char.
+          2.
+         */
         public static string InfixTest1 = "3 * (11 - 8) - 45 / ((98 - 60) / 10 + 6) ";
         /// <summary>
         /// Only apply to single-digit integers and + - * /
@@ -106,50 +137,53 @@ namespace Ques.Algorithms
         /// </summary>
         /// <param name="sufixExpression"></param>
         /// <returns></returns>
-        public static string InfixToSufix(string sufixExpression)
+        public static string InfixToSufix(string infixExpression)
         {
-            Stack<char> s = new Stack<char>();
-            List<char> a = new List<char>();
-            foreach (char c in sufixExpression.ToCharArray())
+            Stack<string> s = new Stack<string>();
+            List<string> a = new List<string>();
+            string[] expressionElements = StringTool.ReadInfixArithmeticExpression(infixExpression);
+            foreach (string ele in expressionElements)
             {
-                if (c=='+' || c=='-' || c== '*'|| c=='/')
-                {
-                    while (true)
+                if (ele=="+" || ele== "-" || ele== "*" || ele== "/")
+                {                       
+                    while (s.Any() && s.Peek() != "(" && OperatorPriority(s.Peek(),ele))
                     {
-                        if (s.Peek() == '(' || OperatorPriority(c, s.Peek()))
-                        {
-                            s.Push(c);
-                            continue;
-                        }
-                        else
-                        {
-                            a.Add(s.Pop());
-                        }
+                        a.Add(s.Pop());
+                    }
+                    s.Push(ele);
+                }
+                else if ( ele == "(")
+                {
+                    s.Push(ele);
+                }
+                else if ( ele == ")")
+                {
+                    string ele_s = s.Pop();
+                    while (ele_s != "(")
+                    {
+                        a.Add(ele_s);
+                        ele_s = s.Pop();
                     }
                 }
-                else if ( c == '(')
+                else //if it's a number
                 {
-                    s.Push(c);
-                }
-                else if ( c == ')')
-                {
-                    while (true)
-                    {
-                        char c_s = s.Pop();
-                        if (c == '+' || c == '-' || c == '*' || c == '/')
-                        {
-                            a.Add(c_s);
-                        }
-                        if (c == '(') continue;
-                    }
-                }
-                else //1. if it's number
-                {
-                    a.Add(c);
+                    a.Add(ele);
                 }
             }
-            return new StringBuilder().Append(a.ToArray()).ToString();
+            while (s.Any())
+            {
+                a.Add(s.Pop());
+            }
+            StringBuilder sb = new StringBuilder();
+            foreach (string str in a)
+            {
+                sb.Append(str + " ");
+            }
+            string sufixExpression = sb.ToString().Substring(0,sb.Length - 1);
+            return sufixExpression;
         }
+
+        
 
         /// <summary>
         /// Compare whether operator o1 has higher priority than o2
@@ -158,13 +192,73 @@ namespace Ques.Algorithms
         /// <param name="o2"></param>
         /// <returns></returns>
 
-        public static bool OperatorPriority(char o1, char o2)
+        public static bool OperatorPriority(string o1, string o2)
         {
             int priorityO1 = 1;
             int priorityO2 = 1;
-            if (o1 == '*' || o1 == '/') priorityO1 = 2;
-            if (o2 == '*' || o2 == '/') priorityO2 = 2;
+            if (o1 == "*" || o1 == "/") priorityO1 = 2;
+            if (o2 == "*" || o2 == "/") priorityO2 = 2;
             return priorityO1 > priorityO2;
+        }
+
+        //1.3.5 Return the binary
+        public static void _1_3_5(int N)
+        {
+            Stack<int> s = new Stack<int>();
+            while (N > 0)
+            {
+                s.Push(N % 2);
+                N = N / 2;
+            }
+            foreach (int n in s) Console.Write(n);
+        }
+
+        //1.3.6 reverses the items of the q
+        public static void _1_3_6()
+        {
+            Queue<int> q = new Queue<int>();
+            Stack<int> s = new Stack<int>();
+            for (int i = 0; i < 5; i++)
+            {
+                q.Enqueue(i);
+            }
+            //incomplete
+        }
+
+        static string _1_3_9Test = "1 + 2 ) * 3 - 4 ) * 5 - 6 ) ) )";
+        //1.3.9 complete the infix with left parenthesis
+        public static string _1_3_9(string infixEx)
+        {
+            
+            string fixedInfixEx = "";
+            string[] eles = StringTool.ReadInfixArithmeticExpression(infixEx);
+            List<string> listEles = new List<string>();
+            for (int i = eles.Length - 1 ; i >= 0; i --)
+            {
+                string ele = eles[i];
+                if (ele == ")") listEles.Add(ele);
+                if (IsNumber((ele)))
+                {
+                    if (i + 2 < eles.Length - 1) 
+                    { 
+                        if (IsOperator(eles[i+1]) && IsNumber(eles[i + 2]))
+                        {
+                            //if 
+                            //listEles.Add("0");//a placeholder for number result of the calculation. 
+                        }
+                    }
+                }
+            }
+            return fixedInfixEx;
+        }
+        private static bool IsOperator(string s)
+        {
+            return s == "+" || s == "-" || s == "*" || s == "/";
+        }
+        private static bool IsNumber(string s)
+        {
+            Regex isNum = new Regex(@"^\d+$");
+            return isNum.IsMatch(s);
         }
     }
 }

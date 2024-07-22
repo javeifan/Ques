@@ -15,7 +15,8 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            showArray(StringTool.ReadArithmeticExpression(Basic.InfixTest1));
+            showArray(StringTool.ReadInfixArithmeticExpression(Basic.InfixTest1));
+           Console.Write(Basic.CalculateSufixArithMeticExpression(Basic.InfixToSufix(Basic.InfixTest1)));
        }
 
         public static int Sum(int[] numbers)
