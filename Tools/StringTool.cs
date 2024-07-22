@@ -8,7 +8,9 @@ namespace Ques.Tools
 {
     class StringTool
     {
-        public static string[] readArithMeticExpression(string expression)
+        //Reads ArithmeticExpression including  + - * / sqr decimal and int
+        //Returns the string[] contains each individual number or operator
+        public static string[] ReadArithmeticExpression(string expression)
         {
             List<string> eles = new List<string>();
             foreach (char c in expression)

@@ -15,9 +15,8 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            Basic.ParenthesesCheck(Basic.ParenTest1);
-            Basic.ParenthesesCheck(Basic.ParenTest2);
-        }
+            showArray(StringTool.ReadArithmeticExpression(Basic.InfixTest1));
+       }
 
         public static int Sum(int[] numbers)
         {
