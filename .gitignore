@@ -1,3 +1,4 @@
 *.suo
 *.dtbcache.v2
-obj/Debug/net5.0
+obj/Debug
+.vs/Ques/v16/.suo

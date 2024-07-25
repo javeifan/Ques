@@ -8,6 +8,7 @@ using Ques.BeginningCS;
 using Ques.Mathemaitcs;
 using Ques.Algorithms;
 using Ques.Algorithms.Collections;
+using System.Diagnostics;
 
 namespace Ques
 {
@@ -15,9 +16,11 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            showArray(StringTool.ReadInfixArithmeticExpression(Basic.InfixTest1));
-           Console.Write(Basic.CalculateSufixArithMeticExpression(Basic.InfixToSufix(Basic.InfixTest1)));
-       }
+            Rational r7 = Rational.RationalTestCase(8);
+            Rational r8 = Rational.RationalTestCase(9);
+            Debug.Assert(r7.CompareTo(r8) > 0," this would not pass");
+            int N = 1;
+        }
 
         public static int Sum(int[] numbers)
         {

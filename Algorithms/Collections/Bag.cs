@@ -41,14 +41,15 @@ namespace Ques.Algorithms.Collections
         //I haven't tested such.
         public class BagIterator : IEnumerator
         {
-            public Object Current { get; set; }
-            private Node<Item> OrigFirst {get ;set;}
+            public object Current { get; set; }
+            private object OrigFirst {get ;set;}
 
             //内部类需要通过外部类的实例来访问外部类
             //否则就需要用静态变量
             public BagIterator(LinkedBag<Item> bag)
             {
                 Current = bag.first;
+                OrigFirst = Current;
             }
 
             public bool MoveNext()

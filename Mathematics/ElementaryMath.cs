@@ -28,6 +28,52 @@ namespace Ques.Mathemaitcs
             return product;
         }
 
-        
+        public static bool IsPrime(int num)
+        {
+            int sqrtNum = Convert.ToInt32(Math.Sqrt(num));
+            for (int i = 2; i < sqrtNum; i++)
+            {
+                if (num % i == 0) return true;
+            }
+            return false;
+        }
+
+        //An algorithm to calculate GCD
+        public static int Euclidean(int a, int b)
+        {
+            if (a < b)
+            {
+                b = a + b;
+                a = b - a;
+                b = b - a;
+            }
+
+            while (b != 0)
+            {
+                int temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        //An algorithm to calculate GCD
+        public static long Euclidean(long a, long b)
+        {
+            if (a < b)
+            {
+                b = a + b;
+                a = b - a;
+                b = b - a;
+            }
+
+            while (b != 0)
+            {
+                long temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
     }
 }
