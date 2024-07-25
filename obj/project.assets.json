@@ -1,43 +1,43 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0-windows7.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\jave\\.nuget\\packages\\": {},
+    "C:\\Users\\gordon.fan\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Ques\\Ques.csproj",
+      "projectUniqueName": "C:\\Question\\Ques.csproj",
       "projectName": "Ques",
-      "projectPath": "D:\\Ques\\Ques.csproj",
-      "packagesPath": "C:\\Users\\jave\\.nuget\\packages\\",
-      "outputPath": "D:\\Ques\\obj\\",
+      "projectPath": "C:\\Question\\Ques.csproj",
+      "packagesPath": "C:\\Users\\gordon.fan\\.nuget\\packages\\",
+      "outputPath": "C:\\Question\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\jave\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gordon.fan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "net5.0-windows7.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
           "projectReferences": {}
         }
       },
@@ -48,8 +48,8 @@
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "net5.0",
+      "net5.0-windows7.0": {
+        "targetAlias": "net5.0-windows",
         "imports": [
           "net461",
           "net462",
@@ -63,9 +63,12 @@
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

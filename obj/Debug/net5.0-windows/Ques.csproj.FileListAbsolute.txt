@@ -1,5 +1,0 @@
-D:\Ques\obj\Debug\net5.0-windows\Ques.csproj.AssemblyReference.cache
-D:\Ques\obj\Debug\net5.0-windows\Ques.GeneratedMSBuildEditorConfig.editorconfig
-D:\Ques\obj\Debug\net5.0-windows\Ques.AssemblyInfoInputs.cache
-D:\Ques\obj\Debug\net5.0-windows\Ques.AssemblyInfo.cs
-D:\Ques\obj\Debug\net5.0-windows\Ques.csproj.CoreCompileInputs.cache
