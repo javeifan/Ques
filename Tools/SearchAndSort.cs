@@ -8,18 +8,13 @@ namespace Ques.Tools
 {
     public class SearchAndSort
     {
-        //----------------标准答案----------------
-        //The test is not done already.
-        //This is a perfect resolution. 
         public static int[] BubbleSort(int[] nums)//ascending one
-        {
-            //1. Critical Cases 临界情况
-            //For every algorithm first, should concern about critical cases.(临界情况) 
+        { 
             if (nums == null || nums.Length < 2)
             {
                 return nums;
             }
-            //2. Main Algorithm 算法主体
+            
             for (int i = 0; i < nums.Length; i++)//the outer layer is the number of rounds compared. 
             {// a rounds contains a series of comparision for adjacent elements
                 bool isSorted = true;
@@ -37,6 +32,41 @@ namespace Ques.Tools
                 if (isSorted) break;
             }
             return nums;
+        }
+
+        public static int[] MergeSort(int[] items)
+        {
+            int[] temp = new int[items.Length];
+            _MergeSort(items,0,items.Length-1,temp);
+            items = temp;
+            return items;
+        }
+
+        public static void _MergeSort(int[] items, int begin, int end, int[] temp)
+        {
+            //递归截止条件
+            if (begin == end) return;
+            //划分区间
+            int mid = (begin + end) / 2;
+            //递归左右区间
+            _MergeSort(items, begin, mid, temp);
+            _MergeSort(items, mid + 1, end, temp);
+            //将左右区间保存
+            int begin1 = begin, end1 = mid;
+            int begin2 = mid + 1, end2 = end;
+            int i = begin;
+
+            while (begin1 <= end1 && begin2 <= end2)
+            {
+                if (items[begin1] > items[begin2])
+                {
+                    temp[i++] = items[begin1++];
+                }
+                else
+                {
+                    temp[i++] = items[begin2++];
+                }
+            }
         }
 
         public static int[] SelectionSort(int[] nums)//still ascending

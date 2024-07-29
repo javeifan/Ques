@@ -16,10 +16,9 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            Rational r7 = Rational.RationalTestCase(8);
-            Rational r8 = Rational.RationalTestCase(9);
-            Debug.Assert(r7.CompareTo(r8) > 0," this would not pass");
-            int N = 1;
+            Node<int>.GetTestLinkedList(1).showLinkedList();
+            Basic._1319_DeleteTail(Node<int>.GetTestLinkedList(1)).showLinkedList();
+            Basic._1319_DeleteTail(Node<int>.GetTestLinkedList(2)).showLinkedList();
         }
 
         public static int Sum(int[] numbers)

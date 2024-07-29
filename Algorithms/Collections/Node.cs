@@ -20,7 +20,7 @@ namespace Ques.Algorithms.Collections
         {
         }
 
-        public Node<int> GetTestLinkedList(int id)
+        public static Node<int> GetTestLinkedList(int id)
         {
             switch (id)
             {
@@ -38,12 +38,39 @@ namespace Ques.Algorithms.Collections
                         n4.next = n5;
                         n5.next = n6;
                         return n1;
-                        break;
                     }
-                    
+                case 2:
+                    {
+                        Node<int> n1 = new Node<int>(1);
+                        Node<int> n2 = new Node<int>(2);
+                        n1.next = n2;                    
+                        return n1;
+                    }
+
             }
             return new Node<int>(1);
         }
+
+        public override string ToString()
+        {
+            return this.item.ToString();
+        }
+
+        public void showLinkedList()
+        {
+            Node<Item> first = this;
+            while (first != null)
+            {
+                Console.Write(first+" ");
+                first = first.next;
+            }
+        }
+
+
+    }
+
+    public class LinkedList
+    {
 
     }
 }

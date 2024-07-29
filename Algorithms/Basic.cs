@@ -334,7 +334,18 @@ namespace Ques.Algorithms
         }
 
 
-
+        public static Node<int> _1319_DeleteTail(Node<int> node)
+        {
+            Node<int> first = node;
+            if (node == null) throw new ArgumentNullException("Node is null");
+            if (node.next == null) return null;
+            while (node.next.next != null)
+            {
+                node = node.next;
+            }
+            node.next = null;
+            return first;
+        }
     }
 
     public class Date : IComparable<Date>
@@ -457,7 +468,7 @@ namespace Ques.Algorithms
         }
     }
 
-    public class Rational : IComparable<Rational>
+    class Rational : IComparable<Rational>
     {
         private long Numerator { get; set; }
         private long Denominator { get; set; }
@@ -591,11 +602,15 @@ namespace Ques.Algorithms
             return 0;
         }
 
-       
-
-        public static _1319_DeleteTail(Node<int>)
+        #region 1.4 Analysis of Algorithm
+        public static int TwoSum()
         {
-
+            return 0;
         }
+
+        #endregion
     }
+
+
+
 }

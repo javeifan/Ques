@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace Ques.Visualization
 {
@@ -13,16 +12,7 @@ namespace Ques.Visualization
     {
         public void CreateApp()
         {
-            Thread thread = new Thread(() =>
-            {
-                Application app = new Application();
-
-                Window window = new Window
-                {
-                    Height = 200
-                };
-            }
-            );
+            
         }
     }
 }
