@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Ques;
 
 namespace Ques.Tools
 {
@@ -56,9 +57,20 @@ namespace Ques.Tools
             int begin2 = mid + 1, end2 = end;
             int i = begin;
 
-            while (begin1 <= end1 && begin2 <= end2)
+            while (begin1 <= end1 || begin2 <= end2)
             {
-                if (items[begin1] > items[begin2])
+                if (begin1 > end1)
+                {
+                    temp[i++] = items[begin2++];
+                    continue;
+                }
+                if (begin2 > end2)
+                {
+                    temp[i++] = items[begin1++];
+                    continue;
+                }
+
+                if (items[begin1] < items[begin2])
                 {
                     temp[i++] = items[begin1++];
                 }
@@ -67,6 +79,13 @@ namespace Ques.Tools
                     temp[i++] = items[begin2++];
                 }
             }
+
+            //Copies the processed part to original 
+            for (int j = begin; j <= end; j++)
+            {
+                items[j] = temp[j];
+            }
+            Program.showArray(items);
         }
 
         public static int[] SelectionSort(int[] nums)//still ascending
@@ -225,26 +244,25 @@ namespace Ques.Tools
             Console.WriteLine("success");
             return true;
         }
-        public static void SortedTest()
+        public static void SortedTest(SortDelegate sortFunction)
         {
             for (int i = 0; i < 50; i++)
             {
                 int[] nums = MathTool.getRandomInt(-5,25,10);
                 //put your sort method here to test
-                if (!CheckIfSorted(TestSort(nums)))
+                if (!CheckIfSorted(sortFunction(nums)))
                 {
-                    Console.WriteLine("Some Problem there");
+                    Console.WriteLine("Some Problems there");
                 }
             }
         }
-
-        //I would write all my exam code here
-        //----------------默写地址----------------
 
         public static int[] TestSort(int[] nums)//先默写个选择吧
         {
             QuickSort(nums);
             return nums;
         }
+
+        public delegate int[] SortDelegate(int[] nums);
     }
 }

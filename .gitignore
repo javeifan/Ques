@@ -2,3 +2,4 @@
 *.dtbcache.v2
 obj/Debug
 .vs/Ques/v16/.suo
+bin/debug

@@ -16,9 +16,7 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            Node<int>.GetTestLinkedList(1).showLinkedList();
-            Basic._1319_DeleteTail(Node<int>.GetTestLinkedList(1)).showLinkedList();
-            Basic._1319_DeleteTail(Node<int>.GetTestLinkedList(2)).showLinkedList();
+            
         }
 
         public static int Sum(int[] numbers)
@@ -54,7 +52,7 @@ namespace Ques
             return System.Math.Max(max, j - i + 1);
         }
 
-        static void TraverseArray<T>(T[] array)
+        public static void TraverseArray<T>(T[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
@@ -62,7 +60,7 @@ namespace Ques
             }
             Console.WriteLine("");
         }
-        static void showArray<T>(T[] array)
+       public static void showArray<T>(T[] array)
         {
             for (int i = 0; i < array.Length; i++)
             {
