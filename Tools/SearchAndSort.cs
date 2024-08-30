@@ -244,6 +244,7 @@ namespace Ques.Tools
             Console.WriteLine("success");
             return true;
         }
+
         public static void SortedTest(SortDelegate sortFunction)
         {
             for (int i = 0; i < 50; i++)

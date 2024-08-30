@@ -1,0 +1,4 @@
+1.为什么SDK无法删除
+2.Registry Editor是什么作用是什么
+3.csproj文件到底怎么配置 怎么看
+4..NET framework如何更新

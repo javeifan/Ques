@@ -34,5 +34,16 @@ namespace Ques.Tools
             }
             return false;
         }
+
+        public static char[] GetRandomAlphabetChars(int count, bool isDifferent)
+        {
+            char[] chars = new char[count];
+            if (isDifferent)
+            {
+                char[] alphabet = new char[26];
+
+            }
+            return chars;
+        }
     }
 }

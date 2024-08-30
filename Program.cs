@@ -16,7 +16,9 @@ namespace Ques
     {
         static void Main(string[] args)
         {
-            
+            //Sort.SortExercise._218();
+            //Chart chart = new Chart();
+            Console.WriteLine(1);
         }
 
         public static int Sum(int[] numbers)

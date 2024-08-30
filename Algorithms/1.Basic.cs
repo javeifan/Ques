@@ -324,7 +324,6 @@ namespace Ques.Algorithms
             public string _1_3_15(int k)
             {
                 return (array[N - k]);
-
             }
 
             public int Size()
